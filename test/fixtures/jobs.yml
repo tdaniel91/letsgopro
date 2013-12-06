@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  enterprise_id: 1
+  role: MyString
+  begin: 2013-12-06 23:28:07
+  end: 2013-12-06 23:28:07
+
+two:
+  user_id: 1
+  enterprise_id: 1
+  role: MyString
+  begin: 2013-12-06 23:28:07
+  end: 2013-12-06 23:28:07

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  history: MyText
+  foundation: 2013-12-06 23:27:49
+  email: MyString
+  phone: 1
+  address: MyText
+  areas: MyText
+  projectos: MyText
+  admin_id: 1
+
+two:
+  name: MyString
+  history: MyText
+  foundation: 2013-12-06 23:27:49
+  email: MyString
+  phone: 1
+  address: MyText
+  areas: MyText
+  projectos: MyText
+  admin_id: 1
