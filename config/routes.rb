@@ -1,4 +1,8 @@
 Letsgopro::Application.routes.draw do
+  #devise_for :users
+  devise_for :user,:controllers => { :registrations =>'registration'}
+  #match 'dashboard' => 'welcome#dashboard'
+
   resources :abilities
 
   resources :courses
@@ -14,6 +18,9 @@ Letsgopro::Application.routes.draw do
   resources :people
 
   get "welcome/index"
+  root :to =>'welcome#index'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
