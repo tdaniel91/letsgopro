@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+	  <th>Image</th>
       <th>User</th>
       <th>Name</th>
       <th>Birthday date</th>
@@ -19,6 +20,7 @@
   <tbody>
     <% @people.each do |person| %>
       <tr>
+		<td><%= image_tag person.avatar.url %></td>
         <td><%= person.user_id %></td>
         <td><%= person.name %></td>
         <td><%= person.birthday_date %></td>

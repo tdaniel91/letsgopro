@@ -3,7 +3,6 @@
 class RegistrationController < Devise::RegistrationsController
 
   def new
-
     @user= User.new
     @person = Person.new
   end
@@ -25,11 +24,12 @@ class RegistrationController < Devise::RegistrationsController
     @person.phone = params[:person][:phone]
     @person.quote = params[:person][:quote]
     @person.privacy = params[:person][:privacy]
+	@person.avatar = params[:person][:avatar]
     @user.valid?
     if @user.errors.blank?
 
       @user.save
-      @person.user = @user
+     @person.user = @user
       @person.save
       redirect_to people_path
     else

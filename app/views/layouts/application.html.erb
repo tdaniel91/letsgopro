@@ -25,9 +25,8 @@
 
       <p class="navbar-text pull-right">
         <% if user_signed_in? %>
-          <h1 class="textColorTop"><%= link_to Person.find(current_user.person_id), person_path(current_user) %>!</h1>
+          <h1 class="textColorTop"><%= link_to Person.find(current_user.person_id).name, person_path(current_user)%></h1>
           <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
           <%= javascript_include_tag :defaults %>
           <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'navbar-link'%>
       <% else %>

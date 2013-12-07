@@ -1,0 +1,67 @@
+<h2>Sign up</h2>
+
+<%= form_tag(user_registration_path,:method => 'post') %>
+<%= devise_error_messages! %>
+<table>
+
+  <tr>
+    <td>Person ID : </td>
+    <td><%=text_field_tag "user[person_id]",@user.person_id %></td>
+  </tr>
+
+  <tr>
+    <td>Email : </td>
+    <td><%=email_field_tag "user[email]",@user.email %></td>
+  </tr>
+
+  <tr>
+    <td>Password : </td>
+    <td><%=password_field_tag "user[password]",@user.password %></td>
+  </tr>
+
+  <tr>
+    <td>Retype password : </td>
+    <td><%=password_field_tag "user[password_confirmation]",@user.password_confirmation %></td>
+  </tr>
+
+  <tr>
+    <td>Nome: </td>
+    <td><%=text_field_tag "person[name]" ,@person.name %></td>
+  </tr>
+
+  <tr>
+    <td>Data de Nascimento: </td>
+    <td><%=text_field_tag "person[birthday_date]" ,@person.birthday_date  %></td>
+  </tr>
+
+  <tr>
+    <td>Cidade: </td>
+    <td><%=text_field_tag "person[city]" ,@person.city %></td>
+  </tr>
+
+  <tr>
+    <td>Telefone: </td>
+    <td><%=text_field_tag "person[phone]" ,@person.phone %></td>
+  </tr>
+
+  <tr>
+    <td>Frase: </td>
+    <td><%=text_area_tag "person[quote]" ,@person.quote  ,:rows => 4, :cols => 16  %></td>
+  </tr>
+
+  <tr>
+    <td>Privacidade: </td>
+    <td><%=text_field_tag "person[privacy]" ,@person.privacy %></td>
+  </tr>
+  
+  <tr>
+	<td>Imagem de Perfil: </td>
+	<td><%= file_field :avatar, :multiple => true  %></td>
+  </tr>
+
+  <tr>
+    <td><%= submit_tag nil, :class => "form_submit"%></td>
+  </tr>
+</table>
+<br />
+<%= render :partial => "devise/shared/links" %>

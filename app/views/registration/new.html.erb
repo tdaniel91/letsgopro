@@ -1,62 +1,49 @@
 <h2>Sign up</h2>
 
-<%= form_tag(user_registration_path,:method => 'post') %>
-<%= devise_error_messages! %>
-<table>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true}) do |f| %>
+  <%= devise_error_messages! %>
 
-  <tr>
-    <td>Person ID : </td>
-    <td><%=text_field_tag "user[person_id]",@user.person_id %></td>
-  </tr>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
 
-  <tr>
-    <td>Email : </td>
-    <td><%=email_field_tag "user[email]",@user.email %></td>
-  </tr>
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
 
-  <tr>
-    <td>Password : </td>
-    <td><%=password_field_tag "user[password]",@user.password %></td>
-  </tr>
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+  
+  <%= fields_for @person, :url=> people_path do |p| %>
+	<div class="field">
+    <%= p.label :name %><br>
+    <%= p.text_field :name %>
+  </div>
+  <div class="field">
+    <%= p.label :birthday_date %><br>
+    <%= p.datetime_select :birthday_date %>
+  </div>
+  <div class="field">
+    <%= p.label :city %><br>
+    <%= p.text_field :city %>
+  </div>
+  <div class="field">
+    <%= p.label :phone %><br>
+    <%= p.number_field :phone %>
+  </div>
+  <div class="field">
+    <%= p.label :quote %><br>
+    <%= p.text_area :quote %>
+  </div>
+  <div class="field">
+    <%= p.label :privacy %><br>
+    <%= p.number_field :privacy %>
+  </div>
+  <div class="field">
+	<%= p.label :avatar %>
+	<%= p.file_field :avatar %>
+  </div>
+	<%end %>
 
-  <tr>
-    <td>Retype password : </td>
-    <td><%=password_field_tag "user[password_confirmation]",@user.password_confirmation %></td>
-  </tr>
+  <div><%= f.submit "Sign up" %></div>
+<% end %>
 
-  <tr>
-    <td>Nome: </td>
-    <td><%=text_field_tag "person[name]" ,@person.name %></td>
-  </tr>
-
-  <tr>
-    <td>Data de Nascimento: </td>
-    <td><%=text_field_tag "person[birthday_date]" ,@person.birthday_date  %></td>
-  </tr>
-
-  <tr>
-    <td>Cidade: </td>
-    <td><%=text_field_tag "person[city]" ,@person.city %></td>
-  </tr>
-
-  <tr>
-    <td>Telefone: </td>
-    <td><%=text_field_tag "person[phone]" ,@person.phone %></td>
-  </tr>
-
-  <tr>
-    <td>Frase: </td>
-    <td><%=text_area_tag "person[quote]" ,@person.quote  ,:rows => 4, :cols => 16  %></td>
-  </tr>
-
-  <tr>
-    <td>Privacidade: </td>
-    <td><%=text_field_tag "person[privacy]" ,@person.privacy %></td>
-  </tr>
-
-  <tr>
-    <td><%= submit_tag nil, :class => "form_submit"%></td>
-  </tr>
-</table>
-<br />
-<%= render :partial => "devise/shared/links" %>
+<%= render "devise/shared/links" %>
