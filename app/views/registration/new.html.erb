@@ -31,12 +31,12 @@
 
   <tr>
     <td>Data de Nascimento: </td>
-    <td><%=text_area_tag "person[birthday_date]" ,@person.birthday_date  %></td>
+    <td><%=text_field_tag "person[birthday_date]" ,@person.birthday_date  %></td>
   </tr>
 
   <tr>
     <td>Cidade: </td>
-    <td><%=text_field_tag "person[city]" ,@person.cidade %></td>
+    <td><%=text_field_tag "person[city]" ,@person.city %></td>
   </tr>
 
   <tr>
@@ -46,7 +46,7 @@
 
   <tr>
     <td>Frase: </td>
-    <td><%=text_field_tag "person[quote]" ,@person.quote  ,:rows => 10, :cols => 25 %></td>
+    <td><%=text_area_tag "person[quote]" ,@person.quote  ,:rows => 4, :cols => 16  %></td>
   </tr>
 
   <tr>

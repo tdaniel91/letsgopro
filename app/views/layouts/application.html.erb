@@ -1,14 +1,115 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Letsgopro</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Let's get Pro! - Home</title>
+  <link rel="shortcut icon" href="/images/icon.ico">
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js"></script>
 
-<%= yield %>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <!-- <%=  javascript_include_tag "application", "data-turbolinks-track" => true %> -->
+  <%= javascript_include_tag "js", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body >
+<div id="secondBackground">
+
+  <!-- HEADER-->
+  <div id="header" >
+    <div id="leftHeader">
+      <%= link_to "<img src='/images/banner_grey.png'  alt='Logo' />".html_safe, root_url %>
+    </div>
+    <div id="rightHeader">
+
+
+      <p class="navbar-text pull-right">
+        <% if user_signed_in? %>
+          <h1 class="textColorTop"><%= link_to Person.find(current_user.person_id), person_path(current_user) %>!</h1>
+          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <%= javascript_include_tag :defaults %>
+          <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'navbar-link'%>
+      <% else %>
+          <h1 class="textColorTop">Bem vindo!</h1>
+          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+          <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+      <% end %>
+
+      <br>
+      <% if notice %>
+          <p class="alert alert-notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+          <p class="alert alert-error"><%= alert %></p>
+      <% end %>
+
+    </div>
+  </div>
+  <!-- FIM-HEADER-->
+
+  <div id="menu">
+    <ul id="nav">
+      <% if user_signed_in? %>
+          <li><img src="/images/home.png" width="20"><%= link_to "Página inicial", root_url %></li>
+          <li class="hasChild"><img src="/images/profile.png" width="20"><a id="pagLink"> As minhas páginas</a>
+            <ul style="display: none;">
+              <li><img src="/images/profile2.png" width="15"><%=link_to  "O meu perfil", person_path(current_user)%></li>
+              <li><img src="/images/profile_empresa.png" width="20"><a href="ProfileEmpresa.html">A minha empresa</a></li>
+            </ul>
+          </li>
+          <li><img src="/images/Suitcase_icon.png" width="18"> <%= link_to "Empresas", enterprises_path%> </li>
+          <li><img src="/images/friends.png" width="18"> <%= link_to "Contactos", people_path%> </li>
+          <!-- <%= link_to '<li><img src="/images/friends.png" width="18"> Contactos </li>'.html_safe, people_path%> -->
+          <li><img src="/images/lupa.png" width="18"><a href="Pesquisa.html"> Pesquisa</a> </li>
+          <li></li>
+      <%else #TODO Que menu se mete aqui? %>
+
+      <%end%>
+    </ul>
+
+  </div>
+
+
+  <%= yield %>
+
+
+
+
+
+
+  <div id="feed">
+    <p id="feedTitle">Feed de notícias</p><img src="/images/feed.png" width="30">
+    <hr>
+    <p id="headerNews">O Lorem Ipsum</p>
+    <p id="newsText">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    <hr>
+    <p id="headerNews">Rick Roll - Lyrics</p>
+    <p id="newsText">Never gonna give you up<br>
+      Never gonna let you down<br>
+      Never gonna run around and desert you<br>
+      Never gonna make you cry <br>
+      Never gonna say goodbye<br>
+      Never gonna tell a lie and hurt you
+    </p>
+    <hr>
+  </div>
+  <!-- FOOTER -->
+  <div id="footer" >
+    João Campos e Tiago Daniel  ||
+    <a href="About us" class="aboutus">Sobre nós</a>
+  </div>
+  <!-- FIM-FOOTER -->
+</div>
+<p class="flag" ><a href="http://ctp.di.fct.unl.pt/lei/daweb/">ProjDAWeb</a></p>
+
+
+
+<br>
+
+| <%= link_to 'Person', people_path %>
+| <%= link_to 'Empresas', enterprises_path %>
+
 
 </body>
 </html>

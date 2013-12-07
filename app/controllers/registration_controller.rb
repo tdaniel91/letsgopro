@@ -12,11 +12,13 @@ class RegistrationController < Devise::RegistrationsController
 
     @user = User.new
     @user.person_id = params[:user][:person_id]
+    #@user.person_id = @user.id
     @user.email = params[:user][:email]
     @user.password = params[:user][:password]
     @user.password_confirmation =params[:user][:password_confirmation]
 
     @person = Person.new
+    #@person.id = @user.id
     @person.name = params[:person][:name]
     @person.birthday_date = params[:person][:birthday_date]
     @person.city = params[:person][:city]
@@ -29,7 +31,7 @@ class RegistrationController < Devise::RegistrationsController
       @user.save
       @person.user = @user
       @person.save
-      redirect_to dashboard_path
+      redirect_to people_path
     else
       render :action => "new"
     end

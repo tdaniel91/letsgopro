@@ -11,3 +11,562 @@
  *= require_self
  *= require_tree .
  */
+
+
+/*=======================ESTILOS POR PADRAO===============================*/
+
+body{
+    margin: 0px;
+    background: #b8f28c url("/images/background1.png") repeat-x;
+    font-family:Verdana, Geneva, sans-serif;
+}
+hr {
+    width:90%;
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    border-style: dotted;
+}
+
+#secondBackground{
+    background: #f8fdca url("/images/fundo.png") repeat-x;;
+    margin-left:auto;
+    margin-right:auto;
+    top:0px;
+    border-top: 0px solid #AAA;
+    padding-top: 0px;
+    border-left: solid 0px #AAA;
+    border-right: solid 0px #AAA;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom: solid 2px #6dbe2f;
+}
+
+/*---------- HEADER ----------------------*/
+#header{
+    width: 100%;
+    display: inline-block;
+    padding: 25px 0px 30px 0px;
+}
+
+#leftHeader{
+    position: relative;
+    float: left;
+}
+#rightHeader{
+    position: relative;
+    float: right;
+    text-align: right;
+    padding-right: 5px;
+}
+#rightHeader > h1{
+    margin:0;
+    display: block;
+}
+#rightHeader > p{
+    display: inline;
+}
+
+.hideSlash:after{
+    content: " /" ;
+}
+
+.textColorTop{
+    color: #FFFFFF;
+    display: inline;
+}
+.textColorTop > a{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#logout{
+    font-size: 22px;
+    text-decoration: none;
+}
+/*---------- FIM HEADER-----------------*/
+
+/*---------- MENU ----------------------*/
+
+#menu{
+    display: inline-block;
+    float:left;
+    height: 500px;
+}
+
+#menu > ul{
+    list-style: none;
+    padding-top: 2px;
+    padding-bottom: 4px;
+}
+
+#nav {
+    padding: 0px;
+}
+
+#nav > li{
+    border-top: 1px dashed gray;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#nav > li > a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #056507;
+    text-decoration: none;
+
+}
+#nav > li > a:hover {
+    font-size: 16px;
+    color: #159513;
+}
+
+#nav > li > ul{
+    background-color: #79a556;
+    padding: 2px 0px 2px 0px;
+    list-style-type: none;
+}
+
+#nav > li > ul > li{
+    font-size: 15px;
+}
+#nav > li > ul > li > a {
+    text-decoration: none;
+    color: white;
+}
+
+#nav > li > ul > li > a:hover{
+    color:grey;
+}
+
+#pagLink{
+    font-size: 20px;
+}
+
+/*--------FIM MENU-----------------*/
+
+/*--------NEWS FEED----------------*/
+#feed{
+    display: inline-block;
+    padding-top: 15px;
+}
+
+#feed > h1{
+    font-size: 23px;
+    float:right;
+    margin: 0;
+    color:  #056507;
+    padding-right: 5px;
+}
+
+#feed > h2{
+    clear:both;
+    color:forestgreen;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#feed > p{
+    font-size: 10px;
+}
+/*--------FIM NEWS FEED------------*/
+
+/*-------- ARTICLE ----------------*/
+#article{
+    display: inline-block;
+}
+
+#articleImg{
+    float: right;
+    padding-top: 15px;
+}
+
+#articleTitle{
+    font-size: 25px;
+    color: #056507;
+    padding-top: 10px;
+    margin:0;
+}
+
+#articleText{
+    font-size: 13px;
+}
+
+.verMais{
+    margin: 0px;
+    padding: 0px;
+    text-align: right;
+    color: #AAAAAA;
+    font-size: small;
+}
+.articleBody{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.articleBody > h1{
+    font-weight:600;
+    font-size: 25px;
+    color: #056507;
+    padding: 0px;
+    margin: 0px;
+}
+.articleBody > h2{
+    font-weight:lighter;
+    color: #056507;
+    padding: 5px 0px 1px 0px;
+    margin: 0 0 0 0px;
+}
+.articleBody > h3{
+    font-weight:lighter;
+    color: forestgreen;
+    padding: 4px 0px 2px 5px;
+    margin: 0 0 0 0px;
+}
+.articleBody > p{
+    padding: 0px 0px 2px 10px;
+    margin: 0 0 0 0px;
+}
+.articleBody > ul{
+    padding: 4px 0px 2px 25px;
+    margin: 0 0 0 0px;
+    list-style-type: square;
+}
+.articleBody >  li{
+    padding: 0px 0px 0px 5px;
+    margin: 0 0 0 0px;
+}
+
+
+/*-------- FIM ARTICLE ----------------*/
+
+/*-------- FOOTER ---------------------*/
+#footer{
+    clear:both;
+    text-align: center;
+}
+
+a.aboutus{
+    color: #056507;
+}
+
+a.aboutus:hover{
+    color:gray;
+}
+/*-------- FIM FOOTER ------------------*/
+
+
+/* -----------------------------------------
+               Contacts
+-------------------------------------------*/
+#contactsTitle{
+    font-size: 35px;
+    margin-top: 5px;
+    color:#056507;
+}
+
+.contactDetail{
+    font-size: 15px;
+    color: forestgreen;
+}
+
+/* -----------------------------------------
+               Contacts
+-------------------------------------------*/
+
+/* -----------------------------------------
+        Pesquisa
+-------------------------------------------*/
+#labelPesquisa {
+    display: inline-block;
+}
+#labelPesquisa > label {
+    display: block;
+    margin: 7px;
+}
+#textPesquisa{
+    display: inline-block;
+}
+/* -----------------------------------------
+        Pesquisa
+-------------------------------------------*/
+
+/* -----------------------------------------
+        Profile
+-------------------------------------------*/
+#topUser {
+    display: inline-block;
+}
+.imgUser {
+    float: left;
+    margin-right: 0px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #AAAAAA;
+}
+.imgEmp {
+    float: left;
+    margin-right: 0px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #AAAAAA;
+}
+#empTitle{
+    font-size: 25px;
+    color: #056507;
+    padding-top: 10px;
+    margin:0;
+}
+#topUser > p{
+    padding: 0px;
+    margin:0px;
+    font-style: italic;
+    color: #AAAAAA;
+}
+
+
+.divContacto{
+    width: auto;
+    max-width: 102px;
+    display: inline-block;
+    margin: 2px;
+    padding: 2px;
+}
+.nameOtherUser{
+    padding:0px;
+    margin:0px;
+    text-align: center;
+    font-size: small;
+}
+.imgOtherUser{
+    width: 100px;
+    height: 100px;
+    padding: 2px;
+    margin: 2px;
+    border: 1px solid #AAAAAA;
+}
+
+
+/* -----------------------------------------
+        Profile
+-------------------------------------------*/
+
+/* -----------------------------------------
+        Edit Profile
+-------------------------------------------*/
+.labelEdit {
+    display: inline-block;
+}
+.labelEdit > label {
+    display: block;
+    margin: 7px;
+}
+.textEdit{
+    display: inline-block;
+}
+
+.textUserEmpresa{
+    width: 140px;
+}
+.textUserCargo{
+    width: 140px;
+}
+.textUserCargoAno{
+    width: 30px;
+}
+/* -----------------------------------------
+        Edit Profile
+-------------------------------------------*/
+
+/* -----------------------------------------
+        Popup Register/Login Menu
+-------------------------------------------*/
+#mask {
+    display: none;
+    background: #000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.popup {
+    display: none;
+    background: #b8f28c;
+    padding: 10px;
+    border: 2px solid #ddd;
+    float: left;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    box-shadow: 0px 0px 20px #00611C;
+}
+
+img.btn_close {
+    float: right;
+    margin: -28px -28px 0 0;
+}
+
+.popup > p{
+    font-size: 35px;
+    color:forestgreen;
+    text-align: center;
+    font-weight: bolder;
+}
+
+#subLogin{
+    float:right;
+    color:forestgreen;
+}
+
+#forgotPW{
+    font-size: 10px;
+    float:right;
+    padding-top: 5px;
+    color:forestgreen;
+}
+
+#labelRegPop {
+    display: inline-block;
+}
+#labelRegPop > label {
+    display: block;
+    margin: 7px;
+}
+#textRegPop{
+    display: inline-block;
+}
+
+/* -----------------------------------------
+        Popup Register/Login Menu
+-------------------------------------------*/
+
+.submitRegisto{
+    color: #056507;
+    padding-left: 175px;
+}
+
+#labelRegForm {
+    display: inline-block;
+}
+#labelRegForm > label {
+    display: block;
+    margin: 7px;
+}
+#textRegForm{
+    display: inline-block;
+}
+
+
+
+/* About us */
+#aboutus > h1{
+    color:forestgreen;
+
+}
+
+#aboutus{
+    margin-left: 100px;
+}
+
+#aboutus > a {
+    float: right;
+}
+
+/* About us*/
+.hidden{
+    display:none;}
+
+/*aparece flag na direita*/
+.show{
+    display:inline;
+    position: fixed;
+    bottom: -15px;
+    right: 5px;
+}
+
+a{
+
+    color: #056507;
+}
+a:hover{
+
+    color:gray;
+}
+
+/*========================================================================*/
+
+
+
+/* --------------------------------------------
+        Responsive design
+-------------------------------------------- */
+
+/* PÃ¡ginas com largura superior a 1060px
+   barras com gradiantes laterais            */
+@media only screen and (min-width : 1060px) {
+    #secondBackground{
+        width: 1000px ;
+    }
+
+    #menu{
+        display: inline-block;
+        position: relative;
+        width: 200px;
+    }
+
+    #article{
+        padding-left: 5px;
+        display: inline-block;
+        width: calc(100% - 470px);
+    }
+    #feed{
+        float: right;
+        width: 250px;
+    }
+
+}
+
+/* PÃ¡ginas com largura inferior a 1060px e
+   superior a 820px - aplicado a 100% largura*/
+@media only screen and (max-width : 1060px) and (min-width : 820px){
+
+    #secondBackground{
+        width: 100% ;
+    }
+
+    #menu{
+        display: inline-block;
+        position: relative;
+        width: 200px;
+    }
+
+    #article{
+        position: relative;
+        display: inline-block;
+        width: calc(100% - 210px);
+    }
+    #feed{
+        visibility: hidden;
+        float: right;
+        width: 300px;
+    }
+}
+
+/* PÃ¡ginas com largura inferior a 820px
+   menus horizontais
+   http://tutorialzine.com/2010/06/css3-minimalistic-navigation-menu/        */
+@media only screen and (max-width : 820px) {
+    #secondBackground{
+        width: 820px;
+
+    }
+}
+/* --------------------------------------------
+    Responsive design
+-------------------------------------------- */
