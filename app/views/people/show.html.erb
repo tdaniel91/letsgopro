@@ -1,40 +1,130 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= image_tag @person.avatar.url %>
-  <%= @person.user_id %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @person.name %>
-</p>
-
-<p>
-  <strong>Birthday date:</strong>
-  <%= @person.birthday_date %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @person.city %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @person.phone %>
-</p>
-
-<p>
-  <strong>Quote:</strong>
-  <%= @person.quote %>
-</p>
-
-<p>
   <strong>Privacy:</strong>
   <%= @person.privacy %>
 </p>
+
+
+<div id="topUser" class="articleBody" >
+
+  <%= image_tag @person.avatar.url, :class =>"imgUser", :alt => "user img"%>      <%# TODO meter uma imagem default num if %>
+  <p class="vermais" align="right"><a href="EditProfile.html"> Editar</a></p>     <%# TODO linkar o form certo %> <br>
+  <%= link_to "editar", edit_person_path(@person), :class=>"vermais", :align=>"right" %>
+  <h1 id="articleTitle"><%=@person.name  %></h1>                                  <%# TODO meter 1 e ultimo nome %>
+  <p id="userFrase"><%=@person.quote  %> </p>
+  <%if @jobs.size==0 %>
+      <p></p>
+  <% else %>
+    <p class="userCargo"><b><%= @jobs.last.role %></b></p>
+  <% end %>
+</div>
+<div id="pessoal" class="articleBody" >
+  <h2>Pessoal</h2>
+  <h3>Nome completo</h3>
+  <p id="userNomeCompleto"><%=@person.name  %></p>
+  <h3>Data de Nascimento</h3>
+  <p id="userDataNascimento"><%=@person.birthday_date %></p>
+  <h3>Cidade</h3>
+  <p id="userLocalidade"><%=@person.city  %></p>
+  <h3>Email</h3>
+  <p id="userEmail"><%=@user.email  %></p>
+  <h3>Telefone</h3>
+  <p id="userTelefone"><%=@person.phone  %></p>
+  <hr>
+</div>
+<div id="cv" class="articleBody">
+  <h2>Formação</h2>
+  <h3>Curso(s)</h3>
+  <%if @courses.size==0 %>
+      <p>De momento não tem nenhum curso no seu perfil! Adicione ao  <%= link_to "perfil", edit_person_path(@person) %>!</p>
+  <% else %>
+      <ul>
+        <% @courses.each do |c| %>
+            <li><b> <%= c.name %> </b> - <%= c.univ %> - <%= c.year %> </li>
+        <% end %>
+      </ul>
+  <% end %>
+  <h3>Competencias:</h3>
+  <%if @abilitys.size==0 %>
+      <p>De momento não tem nenhuma competencia no seu perfil! Adicione ao  <%= link_to "perfil", edit_person_path(@person) %>!</p>
+  <% else %>
+      <ul>
+      <% @abilitys.each do |a| %>
+          <li> <%= a.name %> </li>
+      <% end %>
+      </ul>
+  <% end %>
+  <hr>
+</div>
+<div id="profissional" class="articleBody">
+  <h2>Profissão</h2>
+  <h3>Empresa:</h3>                                                               <!-- TODO fazer restricoes sobre os empregos-->
+  <%if @jobs.size==0 %>
+      <p>De momento não tem nenhum emprego registado no perfil! Adicione ao  <%= link_to "perfil", edit_person_path(@person) %>!</p>
+  <% else %>
+      <p id="userEmpresa"><%= link_to Enterprise.find(@jobs.last.enterprise_id).name, Enterprise.find(@jobs.last.enterprise_id) %></p>
+      <h3>Cargo</h3>
+      <p id="userCargo"><%= @jobs.last.role %></p>
+
+      <%if @jobs.size>1 %>
+          <h3>Empregos anteriores:</h3>
+          <ul id="userEmpresas">
+            <% @jobs.each do |j| %>
+                <li><b> <%= link_to Enterprise.find(j.enterprise_id).name, Enterprise.find(j.enterprise_id) %> </b>
+                  - <%= j.role %> - <%= j.begin %> // <%= j.end %> </li>
+            <% end %>
+          </ul>
+          <% end %>
+  <% end %>
+  <hr>
+</div>
+<div id="hobbies" class="articleBody">
+  <h3>Hobbies</h3>
+  <ul id="userHobbies">
+  </ul>
+  <hr>
+</div>
+<div id="contactos" class="articleBody">
+  <h2>Agenda de contactos</h2>                                                    <!-- TODO meter condiçao para condicionar a 8 amigos-->
+  <h3>Contactos</h3>
+  <div id="userContactos">
+    <%if @contacts_accepted.size==0 %>
+        <p>De momento não tem nenhum contacto na sua rede! Adicione <%= link_to "contacts", people_path %>!</p>
+    <% else %>
+        <% @contacts_accepted.each do |c| %>
+            <div class="divContacto">
+              <a href="profile.html?user=">
+                <%= link_to (image_tag Person.find(c.user2_id).avatar.url, :class =>"imgOtherUser", :alt => "user img"), Person.find(c.user2_id)%>      <%# TODO meter uma imagem default num if %>
+                <p class="nameOtherUser"> <%= link_to Person.find(c.user2_id).name, Person.find(c.user2_id) %></p>
+              </a>
+            </div>
+        <% end %>
+    <% end %>
+  </div>
+  <hr >
+  <h3>Colegas</h3>                                                                <!-- TODO nao funciona -->
+  <div id="userColegas">
+    <%if @jobs.size==0%>
+        <p>De momento não tem nenhum emprego! Edite o seu <%= link_to "perfil", edit_person_path(@person) %>!</p>
+    <% else %>
+        <%if Enterprise.find(@jobs.last.enterprise_id).job.size==1 %>
+            <p>A sua empresa actual não tem funcionários</p>
+        <% else %>
+
+            <% @coworkers.each do |c| %>
+                <div class="divContacto">
+                  <a href="profile.html?user=">
+                    <img class="imgOtherUser" src="">                                  <!-- TODO meter avatar-->
+                    <p class="nameOtherUser"> <%= link_to Person.find(c.user_id).name, Person.find(c.user_id) %></p>
+                  </a>
+                </div>
+            <% end %>
+        <% end %>
+    <% end %>
+  </div>
+  <hr >
+</div>
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>

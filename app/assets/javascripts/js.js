@@ -105,7 +105,7 @@ $(document).ready(function(){
 // --------------------- Nav Menu -----------------------------
 
 // -------- Variaveis para simulação de comportamento do site
-
+     /*
 var $userName = "simplicio";
 var $imgAlt = $userName;
 var $imgSrc = "userImages/"+$userName+".jpg";
@@ -218,7 +218,7 @@ function userProfile(){
         }
 
 
-        $.each($contactos, function(i){
+        $.each($contactos, function(i){                                                       c
             $('div#userContactos').append(
                 $('<div class="divContacto">').append(
                     $("<a/>", {
@@ -243,7 +243,7 @@ function userProfile(){
         }
     }
 
-
+      */
 
 };
 // --------------------- Profile -----------------------------

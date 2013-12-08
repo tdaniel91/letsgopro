@@ -65,6 +65,33 @@ class PeopleController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = Person.find(params[:id])
+
+
+
+
+
+      @user = User.find(params[:id])
+      # @person = @current_user
+      @articles = @user.article
+      @abilitys = @user.ability
+      @courses = @user.course
+      @jobs = @user.job
+      @contacts = @user.contact
+      @contacts_accepted = Array.new
+      @contacts.each do |c|
+        if c.state == "Aceite"
+          @contacts_accepted.push(c)
+        end
+      end
+      @coworkers = Array.new
+      if !(@jobs.size)==0
+        @coworkers = Enterprise.find(@jobs.last.enterprise_id).job
+      end
+
+
+
+
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
