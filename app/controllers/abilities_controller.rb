@@ -1,6 +1,15 @@
 class AbilitiesController < ApplicationController
   before_action :set_ability, only: [:show, :edit, :update, :destroy]
 
+  before_filter :require_permission, only: :edit
+
+  def require_permission
+    if current_user != Ability.find(params[:id]).user
+      redirect_to root_path
+      #Or do something else here
+    end
+  end
+
   # GET /abilities
   # GET /abilities.json
   def index

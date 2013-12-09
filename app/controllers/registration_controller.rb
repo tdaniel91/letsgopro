@@ -17,7 +17,7 @@ class RegistrationController < Devise::RegistrationsController
     @user.password_confirmation =params[:user][:password_confirmation]
 
     @person = Person.new
-    #@person.id = @user.id
+    #
     @person.name = params[:person][:name]
     @person.birthday_date = params[:person][:birthday_date]
     @person.city = params[:person][:city]
@@ -30,6 +30,7 @@ class RegistrationController < Devise::RegistrationsController
 
       @user.save
      @person.user = @user
+      @person.id = @user.id
       @person.save
       redirect_to people_path
     else

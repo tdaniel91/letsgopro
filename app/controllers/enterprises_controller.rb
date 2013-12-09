@@ -1,6 +1,15 @@
 class EnterprisesController < ApplicationController
   before_action :set_enterprise, only: [:show, :edit, :update, :destroy]
 
+  before_filter :require_permission, only: :edit
+
+  def require_permission
+    if current_user != User.find(Enterprise.find(params[:id]).admin_id)
+      redirect_to root_path
+      #Or do something else here
+    end
+  end
+
   # GET /enterprises
   # GET /enterprises.json
   def index

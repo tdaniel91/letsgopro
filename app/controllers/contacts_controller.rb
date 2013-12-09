@@ -1,5 +1,13 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_filter :require_permission, only: :edit
+
+  def require_permission
+    if current_user != User.find(params[:id])
+      redirect_to root_path
+      #Or do something else here
+    end
+  end
 
   # GET /contacts
   # GET /contacts.json
@@ -14,7 +22,12 @@ class ContactsController < ApplicationController
 
   # GET /contacts/new
   def new
-    @contact = Contact.new
+    if params.has_key? :user2_id
+      @contact = Contact.new(:user_id => current_user.id, :user2_id => params[:user2_id], :state => "pending")
+      @contact2 = Contact.new(:user_id => @user2, :user2_id => current_user.id, :state => "pending")
+    else
+      @contact = Contact.new
+    end
   end
 
   # GET /contacts/1/edit
@@ -23,19 +36,27 @@ class ContactsController < ApplicationController
 
   # POST /contacts
   # POST /contacts.json
-  def create
+  def create                                                                            #TODO trocar user_id com user2_id na segunda linha
+    #@contact = Contact.new(contact_params)
+    @contact = Contact.new(:user_id => current_user.id, :user2_id => @user2,  :state => "pending")
     @contact = Contact.new(contact_params)
+    @contact.save
+    @contact2 = Contact.new(:user_id => @user2, :user2_id => current_user.id, :state => "pending")
+    @contact2 = Contact.new(contact_params)
+    #@contact2.save
+
 
     respond_to do |format|
-      if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @contact }
+      if @contact2.save
+        format.html { redirect_to @contact2, notice: 'Contact was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @contact2 }
       else
         format.html { render action: 'new' }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
+        format.json { render json: @contact2.errors, status: :unprocessable_entity }
       end
     end
   end
+
 
   # PATCH/PUT /contacts/1
   # PATCH/PUT /contacts/1.json
@@ -65,6 +86,7 @@ class ContactsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
       @contact = Contact.find(params[:id])
+      @user2 = params[:user2_id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,6 +1,15 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
+  before_filter :require_permission, only: :edit
+
+  def require_permission
+    if current_user != User.find(params[:id])
+      redirect_to root_path
+      #Or do something else here
+    end
+  end
+
   # GET /people
   # GET /people.json
   def index
@@ -14,8 +23,9 @@ class PeopleController < ApplicationController
 
   # GET /people/new
   def new
-    @person = Person.new
+    @person = Person.new(:person_id => @user.id)
   end
+
 
   # GET /people/1/edit
   def edit
@@ -66,10 +76,6 @@ class PeopleController < ApplicationController
     def set_person
       @person = Person.find(params[:id])
 
-
-
-
-
       @user = User.find(params[:id])
       # @person = @current_user
       @articles = @user.article
@@ -87,10 +93,7 @@ class PeopleController < ApplicationController
       if !(@jobs.size)==0
         @coworkers = Enterprise.find(@jobs.last.enterprise_id).job
       end
-
-
-
-
+      @privacy = @person.privacy
 
     end
 

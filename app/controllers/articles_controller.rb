@@ -1,6 +1,15 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
+  before_filter :require_permission, only: :edit
+
+  def require_permission
+    if current_user != Article.find(params[:id]).user
+      redirect_to root_path
+      #Or do something else here
+    end
+  end
+
   # GET /articles
   # GET /articles.json
   def index

@@ -1,6 +1,15 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
+  before_filter :require_permission, only: :edit
+
+  def require_permission
+    if current_user != Job.find(params[:id]).user
+      redirect_to root_path
+      #Or do something else here
+    end
+  end
+
   # GET /jobs
   # GET /jobs.json
   def index

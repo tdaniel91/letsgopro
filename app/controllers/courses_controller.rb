@@ -1,6 +1,13 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_filter :require_permission, only: :edit
 
+  def require_permission
+    if current_user != Course.find(params[:id]).user
+      redirect_to root_path
+      #Or do something else here
+    end
+  end
   # GET /courses
   # GET /courses.json
   def index
