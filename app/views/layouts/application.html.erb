@@ -63,15 +63,16 @@
           <li><img src="/images/lupa.png" width="18"><a href="Pesquisa.html"> Pesquisa</a> </li>
           <li></li>
       <%else #TODO Que menu se mete aqui? %>
-
+	  <li><img src="/images/home.png" width="20"><%= link_to "Página inicial", root_url %></li>
+		<li></li>
       <%end%>
     </ul>
 
   </div>
 
-
+	<div id="article">
   <%= yield %>
-
+	</div>
 
 
 

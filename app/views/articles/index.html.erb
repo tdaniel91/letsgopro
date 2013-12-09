@@ -1,9 +1,9 @@
+<% if user_signed_in? %>
 <h1>Listing articles</h1>
 
 <table>
   <thead>
     <tr>
-      <th>User</th>
       <th>Image</th>
       <th>Article title</th>
       <th>Article text</th>
@@ -14,20 +14,22 @@
   </thead>
 
   <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.user_id %></td>
-        <td><%= article.image %></td>
-        <td><%= article.article_title %></td>
-        <td><%= article.article_text %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+            <% @articles.each do |article| %>
+                      <% if (Person.find(current_user.id).id == article.user_id) %>
+                        <tr>
+                      <td><%= image_tag article.attachment.url %></td>
+                      <td><%= article.article_title %></td>
+                      <td><%= article.article_text %></td>
+                      <td><%= link_to 'Show', article %></td>
+                      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+                      <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      </tr>
+                       <% end %>
+            <% end %>
+	  </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New Article', new_article_path %>
+<%= link_to 'Novo Artigo', new_article_path %>
+<%else %>
+<p> Faça <%= link_to 'login', new_user_session_path %> ou <%= link_to 'registe-se', new_user_registration_path %> para visualizar os seus artigos </p>
+<% end %>

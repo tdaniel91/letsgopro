@@ -12,12 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.hidden_field :user_id, :value => Person.find(current_user.id).id %>
   </div>
   <div class="field">
-    <%= f.label :image %><br>
-    <%= f.text_field :image %>
+    <%= f.label :attachment %><br>
+    <%= f.file_field :attachment %>
   </div>
   <div class="field">
     <%= f.label :article_title %><br>
