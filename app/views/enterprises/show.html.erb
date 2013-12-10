@@ -1,49 +1,63 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @enterprise.name %>
-</p>
 
-<p>
-  <strong>History:</strong>
-  <%= @enterprise.history %>
-</p>
+<div id="topUser" class="articleBody" >
+  <img class="imgUser " alt="user img" src="userImages/imgGoogle.gif">
+  <h1 id="articleTitle"><%= @enterprise.name %></h1>
+  <p>SLOGANNNNN</p>                         <%# TODO Adicionar migracao %>
 
-<p>
-  <strong>Foundation:</strong>
-  <%= @enterprise.foundation %>
-</p>
+</div>
+<div id="pessoal" class="articleBody">
+  <h2>História</h2>
+  <p><%= @enterprise.history %></p>
+  <h3>Data da fundação</h3>
+  <p><%= @enterprise.foundation %></p>
+  <h2>Contactos</h2>
+  <h3>Endereço</h3>
+  <p>SITEEEEEEEEEEEEEEEEEE</p>               <%# TODO Adicionar migracao %>
+  <h3>Email</h3>
+  <p><%= @enterprise.email %></p>
+  <h3>Telefone</h3>
+  <p><%= @enterprise.phone %></p>
+  <h3>Morada</h3>
+  <p><%= @enterprise.address %></p>
+</div>
+<hr>
+<div id="profissional" class="articleBody">
+  <h2>Áreas e Projectos</h2>
+  <h3>Áreas de especialização</h3>
+  <p><%= @enterprise.areas %></p>
+  <h3>Projectos desenvolvidos</h3>
+  <p><%= @enterprise.projectos %></p>
+</div>
+<hr >
+<div id="contactos" class="articleBody">
+  <h2>Colaboradores</h2>
+  <h3>Administrador da página</h3>
 
-<p>
-  <strong>Email:</strong>
-  <%= @enterprise.email %>
-</p>
+  <div class="divContacto">
+    <%= link_to (image_tag Person.find(@enterprise.admin_id).avatar.url, :class =>"imgOtherUser", :alt => "user img"), Person.find(@enterprise.admin_id)%>      <%# TODO meter uma imagem default num if %>
+    <p class="nameOtherUser"> <%= link_to Person.find(@enterprise.admin_id).name, Person.find(@enterprise.admin_id) %></p>
+  </div>
+  <h3>Funcionarios</h3>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @enterprise.phone %>
-</p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @enterprise.address %>
-</p>
-
-<p>
-  <strong>Areas:</strong>
-  <%= @enterprise.areas %>
-</p>
-
-<p>
-  <strong>Projectos:</strong>
-  <%= @enterprise.projectos %>
-</p>
-
-<p>
-  <strong>Admin:</strong>
-  <%= @enterprise.admin_id %>
-</p>
+  <div id="userContactos">
+    <%if @workers.size==0 %>
+        <p>De momento não tem nenhum funcionário.</p>
+    <% else %>
+        <% @workers.each do |w| %>
+            <div class="divContacto">
+              <a href="profile.html?user=">
+                <%= link_to (image_tag Person.find(w.user_id).avatar.url, :class =>"imgOtherUser", :alt => "user img"), Person.find(w.user_id)%>      <%# TODO meter uma imagem default num if %>
+                <p class="nameOtherUser"> <%= link_to Person.find(w.user_id).name, Person.find(w.user_id) %></p>
+              </a>
+            </div>
+        <% end %>
+    <% end %>
+    <p class="verMais">Ver mais</p>                                                                                                                <!-- TODO meter condiçao para condicionar a 8 amigos-->
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_enterprise_path(@enterprise) %> |
 <%= link_to 'Back', enterprises_path %>

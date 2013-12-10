@@ -1,11 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Privacy:</strong>
-  <%= @person.privacy %>
-</p>
-
-
 <div id="topUser" class="articleBody" >
 
   <%= image_tag @person.avatar.url, :class =>"imgUser", :alt => "user img"%>      <%# TODO meter uma imagem default num if %>
@@ -103,7 +97,7 @@
             <% @contacts_accepted.each do |c| %>
                 <div class="divContacto">
                   <a href="profile.html?user=">
-                    <%= link_to (image_tag Person.find(c.user2_id).avatar.url, :class =>"imgOtherUser", :alt => "user img"), Person.find(c.user2_id)%>      <%# TODO meter uma imagem default num if %>
+                    <%= link_to (image_tag Person.find(c.user2_id).avatar.url, :class =>"imgOtherUser", :alt => "user img"), Person.find(c.user2_id)%>
                     <p class="nameOtherUser"> <%= link_to Person.find(c.user2_id).name, Person.find(c.user2_id) %></p>
                   </a>
                 </div>
@@ -123,7 +117,7 @@
                 <% @coworkers.each do |c| %>
                     <div class="divContacto">
                       <a href="profile.html?user=">
-                        <img class="imgOtherUser" src="">                                  <!-- TODO meter avatar-->
+                        <img class="imgOtherUser" src="">
                         <p class="nameOtherUser"> <%= link_to Person.find(c.user_id).name, Person.find(c.user_id) %></p>
                       </a>
                     </div>

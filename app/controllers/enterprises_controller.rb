@@ -74,6 +74,10 @@ class EnterprisesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_enterprise
       @enterprise = Enterprise.find(params[:id])
+      @workers = Array.new
+        @enterprise.job.each do |j|
+            @workers.push(j)
+        end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
