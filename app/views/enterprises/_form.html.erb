@@ -44,8 +44,11 @@
     <%= f.text_area :projectos %>
   </div>
   <div class="field">
-    <%= f.label :admin_id %><br>
-    <%= f.number_field :admin_id %>
+	<%= f.hidden_field :admin_id, :value => Person.find(current_user.id).id %>
+  </div>
+  <div class="field">
+	<%= f.label :attachment %>
+	<%= f.file_field :attachment %>
   </div>
   <div class="actions">
     <%= f.submit %>
