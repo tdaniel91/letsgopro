@@ -38,6 +38,13 @@ gem 'devise'
 #paperclip
 gem 'paperclip'
 
+#sunspot
+#gem 'sunspot_rails'
+#gem 'sunspot_solr'
+
+#amistad
+#gem 'amistad'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

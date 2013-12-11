@@ -7,7 +7,11 @@
       <p class="vermais" align="right"><a href="EditProfile.html"> Editar</a></p>     <%# TODO linkar o form certo %> <br>
       <%= link_to "editar", edit_person_path(@person), :class=>"vermais", :align=>"right" %>
   <% else %>
-      <%= link_to "Adicionar contacto", new_contact_path( :user2_id => @user.id)%>
+      <% if (@user_contacts_accepted.map(&:user_id).include?(current_user.id) || @user_contacts_accepted.map(&:user2_id).include?(current_user.id)) %>
+        <%= link_to "Remover contacto", contact_path( :user2_id => @user.id)%>         <%# TODO linkar para o delete %> <br>
+      <% else %>
+        <%= link_to "Adicionar contacto", new_contact_path( :user2_id => @user.id)%>
+      <% end %>
   <% end %>
   <h1 id="articleTitle"><%=@person.name  %></h1>                                  <%# TODO meter 1 e ultimo nome %>
   <p id="userFrase"><%=@person.quote  %> </p>
@@ -91,14 +95,19 @@
       <h2>Agenda de contactos</h2>                                                    <!-- TODO meter condiçao para condicionar a 8 amigos-->
       <h3>Contactos</h3>
       <div id="userContactos">
-        <%if @contacts_accepted.size==0 %>
+        <%if @user_contacts_accepted.size==0 %>
             <p>De momento não tem nenhum contacto na sua rede! Adicione <%= link_to "contacts", people_path %>!</p>
         <% else %>
-            <% @contacts_accepted.each do |c| %>
+            <% @user_contacts_accepted.each do |c| %>
                 <div class="divContacto">
                   <a href="profile.html?user=">
-                    <%= link_to (image_tag Person.find(c.user2_id).avatar.url, :class =>"imgOtherUser", :alt => "user img"), Person.find(c.user2_id)%>
-                    <p class="nameOtherUser"> <%= link_to Person.find(c.user2_id).name, Person.find(c.user2_id) %></p>
+                    <% if @user == c.user_id %>
+                        <% u = Person.find(c.user2_id)%>
+                    <% else %>
+                        <% u = Person.find(c.user_id)%>
+                    <% end %>
+                    <%= link_to (image_tag u.avatar.url, :class =>"imgOtherUser", :alt => "user img"), u %>
+                    <p class="nameOtherUser"> <%= link_to u.name, u%></p>
                   </a>
                 </div>
             <% end %>
