@@ -1,43 +1,35 @@
-<h1>Listing enterprises</h1>
+<h1>Lista de empresas</h1>
+
 
 <table>
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>History</th>
-      <th>Foundation</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Address</th>
-      <th>Areas</th>
-      <th>Projectos</th>
-      <th>Admin</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+  <tr>
+    <th>Avatar</th>
+    <th>Detalhes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @enterprises.each do |enterprise| %>
+  <% @enterprises.each do |enterprise| %>
       <tr>
-        <td><%= enterprise.name %></td>
-        <td><%= enterprise.history %></td>
-        <td><%= enterprise.foundation %></td>
-        <td><%= enterprise.email %></td>
-        <td><%= enterprise.phone %></td>
-        <td><%= enterprise.address %></td>
-        <td><%= enterprise.areas %></td>
-        <td><%= enterprise.projectos %></td>
-        <td><%= enterprise.admin_id %></td>
+        <td>
+          <%#TODO AVATAR EMPRESA link_to (image_tag enterprise.avatar.url, :class =>"imgOtherUser", :alt => "user img"), enterprise %>
+          AVATARRRRRRRRR
+        </td>
+        <td>
+          <%= link_to enterprise.name, enterprise %><br>
+          <%#TODO SLOGAN enterprise.slogan %>  SLOOOOGAN <br>
+          <%= enterprise.foundation %>  </td>
         <td><%= link_to 'Show', enterprise %></td>
         <td><%= link_to 'Edit', edit_enterprise_path(enterprise) %></td>
         <td><%= link_to 'Destroy', enterprise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'New Enterprise', new_enterprise_path %>

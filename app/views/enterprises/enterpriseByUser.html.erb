@@ -1,0 +1,44 @@
+<h1> As minhas empresas</h1>
+
+<%if @jobs.size==0 %>
+    <p>De momento não tem nenhum emprego registado no perfil! Adicione ao  <%= link_to "perfil", edit_person_path(Person.find(current_user)) %>!</p>
+<% else %>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Avatar</th>
+        <th>Detalhes</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+    <% @user.job.each do |j| %>
+        <% @e = Enterprise.find(j.enterprise_id) %>
+        <tr>
+        <%#  <td><%= link_to (image_tag @e.avatar.url, :class =>"imgOtherUser", :alt => "user img"), @e %> </td>                   <%#  TODO descomentar quando as empresas tiverem avatar  %>
+          <td><%= link_to (image_tag Person.find(@user).avatar.url, :class =>"imgOtherUser", :alt => "user img"), @e %> </td>
+          <td>
+            <%= link_to @e.name, @e %><br>
+            <% if @e.admin_id == current_user.id %>
+                <p>Administrador da página da empresa <%= @e.name %></p>
+            <% else %>
+                <p><%= j.role %></p>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+
+      </tbody>
+    </table>
+<% end %>
+
+
+
+
+<br>
+
+<%= link_to 'New Enterprise', new_enterprise_path %>

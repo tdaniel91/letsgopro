@@ -70,6 +70,15 @@ class EnterprisesController < ApplicationController
     end
   end
 
+  def enterpriseByUser
+    @user = User.find(current_user.id)
+    @enterprises = Enterprise.all
+    @jobs = Array.new
+    @user.job.each do |j|
+      @jobs.push(j)
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_enterprise
@@ -84,4 +93,6 @@ class EnterprisesController < ApplicationController
     def enterprise_params
       params.require(:enterprise).permit(:name, :history, :foundation, :email, :phone, :address, :areas, :projectos, :admin_id)
     end
+
+
 end

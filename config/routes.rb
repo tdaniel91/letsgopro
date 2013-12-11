@@ -20,6 +20,12 @@ Letsgopro::Application.routes.draw do
   get "welcome/index"
   root :to =>'welcome#index'
 
+  get 'enterpriseByUser', to: 'enterprises#enterpriseByUser', :controller => 'enterprises', :action => 'enterprisesByUser'
+ # get 'enterpriseByUser', to: 'enterprises#enterpriseByUser', :controller => 'enterprises'
+
+  # Route for start action
+  #map.connect '/enterprises/enterpriseByUser', :controller => 'enterprises', :action => 'enterprisesByUser'
+
 
 
 

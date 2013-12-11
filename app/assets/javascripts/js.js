@@ -99,9 +99,6 @@ $(document).ready(function(){
 
     });
 });
-
-
-
 // --------------------- Nav Menu -----------------------------
 
 // -------- Variaveis para simulação de comportamento do site
@@ -243,9 +240,10 @@ function userProfile(){
         }
     }
 
-      */
+
 
 };
+      */
 // --------------------- Profile -----------------------------
 // --------------------- Profile Edit-----------------------------
 function userProfileEdit(){
