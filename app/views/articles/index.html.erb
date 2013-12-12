@@ -1,12 +1,15 @@
 <% if user_signed_in? %>
+<%=form_tag articles_path, :method => :get do %>
+<p>
+	<%= text_field_tag :search, params[:search] %>
+	<%= submit_tag "Search", :name => nil %>
+</p>
+<% end %>
 <h1>Listing articles</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Image</th>
-      <th>Article title</th>
-      <th>Article text</th>
       <th></th>
       <th></th>
       <th></th>
@@ -17,14 +20,32 @@
             <% @articles.each do |article| %>
                       <% if (Person.find(current_user.id).id == article.user_id) %>
                         <tr>
-                      <td><%= image_tag article.attachment.url %></td>
-                      <td><%= article.article_title %></td>
-                      <td><%= article.article_text %></td>
-                      <td><%= link_to 'Show', article %></td>
-                      <td><%= link_to 'Edit', edit_article_path(article) %></td>
-                      <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+						<td>
+						<h3>
+						  <%= article.article_title %>
+						</h3>
+
+						<div style="float:left">
+						  <%= image_tag article.attachment.url(:thumb) %>
+						</div>
+						<div>
+						  <%= article.article_text %>
+						</div>
+
+						<div style="clear: left">
+						  <strong>Autor:</strong>
+						  <%= image_tag Person.find(article.user_id).avatar(:tiny) %>
+						  <%= link_to Person.find(article.user_id ).name, Person.find(article.user_id) %>
+						</div></td>
+						</tr>
+                      <tr><td>
+					  <%= link_to 'Ver', article %>
+                      <%= link_to 'Editar', edit_article_path(article) %>
+                      <%= link_to 'Apagar', article, method: :delete, data: { confirm: 'Are you sure?' } %>
+					  </td>
                       </tr>
                        <% end %>
+					   <tr><td><hr/></td></tr>
             <% end %>
 	  </tbody>
 </table>

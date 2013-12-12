@@ -14,7 +14,10 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+	@search = Article.search do
+		fulltext params[:search]
+	end
+    @articles = @search.results
   end
 
   # GET /articles/1

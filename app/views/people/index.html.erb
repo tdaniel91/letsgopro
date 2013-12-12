@@ -20,7 +20,7 @@
   <tbody>
     <% @people.each do |person| %>
       <tr>
-		<td> <%= link_to (image_tag person.avatar.url, :class =>"imgOtherUser", :alt => "user img"), person %> </td>
+		<td> <%= link_to (image_tag person.avatar.url(:thumb), :class =>"imgOtherUser", :alt => "user img"), person %> </td>
         <td>
           <%= link_to person.name, person %><br>
           <%= person.city %>   <br>

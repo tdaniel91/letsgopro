@@ -2,7 +2,7 @@
 
 <div id="topUser" class="articleBody" >
 
-  <%= image_tag @person.avatar.url, :class =>"imgUser", :alt => "user img"%>
+  <%= image_tag @person.avatar.url(:profile), :class =>"imgUser", :alt => "user img"%>
   <% if current_user==@user %>
       <p class="vermais" align="right"><a href="EditProfile.html"> Editar</a></p>     <%# TODO linkar o form certo %> <br>
       <%= link_to "editar", edit_person_path(@person), :class=>"vermais", :align=>"right" %>
@@ -106,7 +106,7 @@
             <% @user_contacts_accepted.take(4).each do |c| %>
                 <div class="divContacto">
                   <a href="profile.html?user=">
-                    <%= link_to (image_tag c.avatar.url, :class =>"imgOtherUser", :alt => "user img"), c %>
+                    <%= link_to (image_tag c.avatar.url(:smaller), :class =>"imgOtherUser", :alt => "user img"), c %>
                     <p class="nameOtherUser"> <%= link_to c.name, c%></p>
                   </a>
                 </div>

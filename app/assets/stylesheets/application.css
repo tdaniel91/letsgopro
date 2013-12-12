@@ -301,15 +301,11 @@ a.aboutus:hover{
 .imgUser {
     float: left;
     margin-right: 0px;
-    width: 200px;
-    height: 200px;
     border: 1px solid #AAAAAA;
 }
 .imgEmp {
     float: left;
     margin-right: 0px;
-    width: 200px;
-    height: 200px;
     border: 1px solid #AAAAAA;
 }
 #empTitle{
@@ -340,8 +336,6 @@ a.aboutus:hover{
     font-size: small;
 }
 .imgOtherUser{
-    width: 100px;
-    height: 100px;
     padding: 2px;
     margin: 2px;
     border: 1px solid #AAAAAA;
