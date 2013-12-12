@@ -1,6 +1,6 @@
 <%= form_for(@enterprise) do |f| %>
   <% if @enterprise.errors.any? %>
-    <div id="error_explanation">
+s    <div id="error_explanation">
       <h2><%= pluralize(@enterprise.errors.count, "error") %> prohibited this enterprise from being saved:</h2>
 
       <ul>
@@ -58,8 +58,10 @@
 	<%= f.label :attachment %>
 	<%= f.file_field :attachment %>
   </div>
-    <%= f.select :admin_id, @admin_conections.collect {|c| [c.name]}, {include_blank: 'mudar de admin'} %>
+      <% contact_array = @admin_conections.map { |c| [c.name, c.id] } %>
+      <%= options_for_select(contact_array) %>       <%= f.select :admin_id, options_for_select(contact_array), {include_blank: 'mudar de admin'} %>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+

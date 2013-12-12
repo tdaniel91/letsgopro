@@ -97,11 +97,6 @@ class EnterprisesController < ApplicationController
         end
       end
 
-      @admin_conections = Array.new
-      @enterprise.job.each do |c|
-        @admin_conections.push(Person.find(c.user_id))
-      end
-
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

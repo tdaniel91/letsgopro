@@ -6,6 +6,7 @@
   <h1 id="articleTitle"><%= @enterprise.name %></h1>
   <p><%= @enterprise.slogan %></p>
 
+  <%= link_to 'Edit', edit_enterprise_path(@enterprise) %>
 </div>
 <div id="pessoal" class="articleBody">
   <h2>História</h2>
@@ -58,6 +59,3 @@
     <p class="verMais">Ver mais</p>                                                                                                                <!-- TODO meter condiçao para condicionar a 8 amigos-->
   </div>
 </div>
-
-<%= link_to 'Edit', edit_enterprise_path(@enterprise) %> |
-<%= link_to 'Back', enterprises_path %>

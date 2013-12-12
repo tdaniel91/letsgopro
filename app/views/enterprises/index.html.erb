@@ -1,5 +1,7 @@
 <h1>Lista de empresas</h1>
 
+<p>Tem um pequeno negocio e gostava de aumentar a sua visibilidade? <%= link_to "Crie já uma página", new_enterprise_path %> personalizavel para a sua empresa!</p>
+<%= link_to 'New Enterprise', new_enterprise_path %>
 
 <table>
   <thead>
@@ -17,7 +19,7 @@
       <tr>
         <td>
           <%#TODO AVATAR EMPRESA link_to (image_tag enterprise.avatar.url, :class =>"imgOtherUser", :alt => "user img"), enterprise %>
-          <%= image_tag enterprise.attachment.url,  :class =>"imgUser", :alt => "enterprise img"%>
+          <%= link_to (image_tag enterprise.attachment.url,  :class =>"imgUser", :alt => "enterprise img"), enterprise%>
         </td>
         <td>
           <%= link_to enterprise.name, enterprise %><br>
@@ -32,4 +34,4 @@
 </table>
 <br>
 
-<%= link_to 'New Enterprise', new_enterprise_path %>
+
