@@ -11,24 +11,11 @@
     </div>
   <% end %>
 
-
-    <%#  <p> Deseja adicionar <b><%= Person.find(params[:user2_id]).name % ></b> à sua lista de contactos?</p> %>
-
-    <br/><%= link_to 'Add as Friend' , new_contact_path(:user2_id => params[:user2_id]), :method => :post %>
-
+    <p> Deseja adicionar o utilizador à sua lista de contactos?</p>
     <% @u2 = params[:user2_id] %>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user2_id %><br>
-    <%= f.number_field :user2_id %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
-  </div>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :user2_id %>
+    <%= f.hidden_field :state %>
   <div class="actions">
     <%= f.submit %>
   </div>

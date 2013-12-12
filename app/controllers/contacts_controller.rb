@@ -26,11 +26,13 @@ class ContactsController < ApplicationController
     @user_contacts_accepted = Array.new
     @user_contacts_pending = Array.new
     @user_contacts.each do |c|
-      if c.state == "Aceite"
+      if c.state == "accepted"
         @user_contacts_accepted.push(c)
       end
-      if c.state == "Pendente"
-        @user_contacts_pending.push(c)
+      if c.state == "pending"
+        if current_user.id == c.user2_id
+          @user_contacts_pending.push(c)
+        end
       end
 
     end
@@ -45,6 +47,8 @@ class ContactsController < ApplicationController
   def new
     if params.has_key? :user2_id
       @contact = Contact.new(:user_id => current_user.id, :user2_id => params[:user2_id], :state => "pending")
+      @contact.save
+      redirect_to contacts_path, notice: 'Contacto adicionado.'
     else
       @contact = Contact.new
     end
@@ -52,6 +56,13 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1/edit
   def edit
+    if @contact.state =="accepted"
+
+    end
+    if @contact.state =="pending"
+      @contact.state ="accepted"
+    end
+
   end
 
   # POST /contacts
@@ -89,8 +100,9 @@ class ContactsController < ApplicationController
   # DELETE /contacts/1.json
   def destroy
     @contact.destroy
+    #Contact.delete(@contact.id)
     respond_to do |format|
-      format.html { redirect_to contacts_url }
+      format.html { redirect_to contacts_path }
       format.json { head :no_content }
     end
   end

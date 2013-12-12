@@ -108,9 +108,9 @@ Job.create(:user_id => "1", :enterprise_id=>"1", :role=>"Manda chuva", :begin=> 
 Job.create(:user_id => "2", :enterprise_id=>"2", :role=>"Manda chuva", :begin=> DateTime.parse("15/02/2009 17:00"), :end=> DateTime.parse("15/02/2012 17:00"))
 Job.create(:user_id => "3", :enterprise_id=>"1", :role=>"Developer", :begin=> DateTime.parse("15/02/2009 17:00"), :end=> DateTime.parse("15/02/2012 17:00"))
 
-Contact.create(:user_id =>"1", :user2_id =>"2", :state =>"Aceite")
-Contact.create(:user_id =>"2", :user2_id =>"1", :state =>"Aceite")
-Contact.create(:user_id =>"1", :user2_id =>"3", :state =>"Aceite")
-Contact.create(:user_id =>"3", :user2_id =>"1", :state =>"Aceite")
+Contact.create(:user_id =>"1", :user2_id =>"2", :state =>"accepted")
+Contact.create(:user_id =>"2", :user2_id =>"1", :state =>"accepted")
+Contact.create(:user_id =>"1", :user2_id =>"3", :state =>"accepted")
+Contact.create(:user_id =>"3", :user2_id =>"1", :state =>"accepted")
 Contact.create(:user_id =>"1", :user2_id =>"4", :state =>"pending")
 Contact.create(:user_id =>"4", :user2_id =>"1", :state =>"pending")

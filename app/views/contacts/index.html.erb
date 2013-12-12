@@ -1,62 +1,64 @@
 <h1>As suas conexões</h1>
-<h2>Contactos pendentes</h2><hr>
-<table>
-  <thead>
-  <tr>
-    <th>Avatar</th>
-    <th>Detalhes</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-
-  <tbody>
-
-
-  <% @user_contacts_pending.each do |contact| %>
-      <% person = Person.find(contact.user_id) %>
+<h2>Contactos pendentes</h2>
+  <% if @user_contacts_pending.size ==0 %>
+    <p>De momento não tem contactos para aceitar.</p>
+  <% else %>
+    <table>
+      <thead>
       <tr>
-        <td>
-          <%= link_to (image_tag person.avatar.url, :class =>"imgOtherUser", :alt => "user img"), person %>
-        </td>
-        <td>
-          <%= link_to person.name, person %><br>
-
-          <%= link_to person.name, person %><br>
-          <%= person.city %>   <br>
-          <%= person.birthday_date %>
-        <h1><%= contact.state %></h1>
-          <td><%= link_to 'Show', contact %></td>
-        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
-        <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Avatar</th>
+        <th>Detalhes</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
+      </thead>
+      <tbody>
+          <% @user_contacts_pending.each do |contact| %>
+              <% person = Person.find(contact.user_id) %>
+              <tr>
+                <td>
+                  <%= link_to (image_tag person.avatar.url, :class =>"imgOtherUser", :alt => "user img"), person %>
+                </td>
+                <td>
+                  <%= link_to person.name, person %><br>
+                  <%= person.city %>   <br>
+                  <%= person.birthday_date %>
+                <td><%= link_to 'Adicionar', edit_contact_path(contact) %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
   <% end %>
-  <tr>
-    <td colspan="6"><h2>Contactos</h2><hr></td>
-  </tr>
-
-
-
-  <% @user_contacts_accepted.each do |contact| %>
-    <% person = Person.find(contact.user_id) %>
+  <hr>
+  <h2>Contactos</h2>
+  <% if @user_contacts_accepted.size ==0 %>
+      <p>De momento não tem contactos</p>
+  <% else %>
+    <table>
+      <thead>
       <tr>
-        <td>
-          <%= link_to (image_tag person.avatar.url, :class =>"imgOtherUser", :alt => "user img"), person %>
-        </td>
-        <td>
-          <%= link_to person.name, person %><br>
-          <%= person.city %>   <br>
-          <%= person.birthday_date %>
-          <h1><%= contact.state %></h1>
-        <td><%= link_to 'Show', contact %></td>
-        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
-        <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Avatar</th>
+        <th>Detalhes</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
+      </thead>
+      <tbody>
+      <% @user_contacts_accepted.each do |contact| %>
+        <% person = Person.find(contact.user_id) %>
+          <tr>
+            <td>
+              <%= link_to (image_tag person.avatar.url, :class =>"imgOtherUser", :alt => "user img"), person %>
+            </td>
+            <td>
+              <%= link_to person.name, person %><br>
+              <%= person.city %>   <br>
+              <%= person.birthday_date %>
+            <td><%= link_to 'Apagar', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
   <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Contact', new_contact_path %>

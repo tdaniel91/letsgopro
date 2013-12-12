@@ -8,12 +8,12 @@
       <%= link_to "editar", edit_person_path(@person), :class=>"vermais", :align=>"right" %>
   <% else %>
       <% if (@user_contacts_accepted.map(&:user_id).include?(current_user.id) || @user_contacts_accepted.map(&:user2_id).include?(current_user.id)) %>
-        <%= link_to "Remover contacto", contact_path( :user2_id => @user.id)%>         <%# TODO linkar para o delete %> <br>
+        <%= link_to "Remover contacto", contacts_path,data: { confirm: 'Are you sure?' }%>         <%# TODO linkar para o delete %> <br>
       <% else %>
         <%= link_to "Adicionar contacto", new_contact_path( :user2_id => @user.id)%>
       <% end %>
   <% end %>
-  <h1 id="articleTitle"><%=@person.name  %></h1>                                  <%# TODO meter 1 e ultimo nome %>
+  <h1 id="articleTitle"><%=@person.name  %></h1>                                  <%# TODO meter 1 %>
   <p id="userFrase"><%=@person.quote  %> </p>
   <%if @jobs.size==0 %>
       <p></p>
@@ -137,6 +137,3 @@
       <hr >
     </div>
 <% end %>
-
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>

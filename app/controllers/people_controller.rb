@@ -94,7 +94,7 @@ class PeopleController < ApplicationController
 
       @user_contacts_accepted = Array.new
       @user_contacts.each do |c|
-        if c.state == "Aceite"
+        if c.state == "accepted"
           @user_contacts_accepted.push(c)
         end
       end
