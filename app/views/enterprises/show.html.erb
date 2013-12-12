@@ -4,7 +4,7 @@
 <div id="topUser" class="articleBody" >
   <%= image_tag @enterprise.attachment.url %>
   <h1 id="articleTitle"><%= @enterprise.name %></h1>
-  <p>SLOGANNNNN</p>                         <%# TODO Adicionar migracao %>
+  <p><%= @enterprise.slogan %></p>
 
 </div>
 <div id="pessoal" class="articleBody">
@@ -13,8 +13,8 @@
   <h3>Data da fundação</h3>
   <p><%= @enterprise.foundation %></p>
   <h2>Contactos</h2>
-  <h3>Endereço</h3>
-  <p>SITEEEEEEEEEEEEEEEEEE</p>               <%# TODO Adicionar migracao %>
+  <h3>Endereço na Web</h3>
+  <a href="http://<%= @enterprise.website %>"> <%= @enterprise.website %></a> <!-- #TODO Isto não pode ficar assim, senão se houver um link ja com o protocolo, ou com outro diferente isto dá barraca! -->
   <h3>Email</h3>
   <p><%= @enterprise.email %></p>
   <h3>Telefone</h3>

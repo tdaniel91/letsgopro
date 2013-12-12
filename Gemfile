@@ -39,8 +39,8 @@ gem 'devise'
 gem 'paperclip'
 
 #sunspot
-#gem 'sunspot_rails'
-#gem 'sunspot_solr'
+gem 'sunspot_rails'
+gem 'sunspot_solr'
 
 #amistad
 #gem 'amistad'

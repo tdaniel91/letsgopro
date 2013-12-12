@@ -91,7 +91,7 @@ class EnterprisesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def enterprise_params
-      params.require(:enterprise).permit(:name, :history, :foundation, :email, :phone, :address, :areas, :projectos, :admin_id, :attachment)
+      params.require(:enterprise).permit(:name, :history, :foundation, :email, :phone, :address, :areas, :projectos, :admin_id, :attachment, :slogan, :website)
     end
 
 
