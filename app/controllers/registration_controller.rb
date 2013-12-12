@@ -10,14 +10,15 @@ class RegistrationController < Devise::RegistrationsController
   def create
 
     @user = User.new
-    @user.person_id = params[:user][:person_id]
-    #@user.person_id = @user.id
+    #@user.person_id = params[:user][:person_id]
+    @user.person_id = @user.id
     @user.email = params[:user][:email]
     @user.password = params[:user][:password]
     @user.password_confirmation =params[:user][:password_confirmation]
 
+
     @person = Person.new
-    #
+
     @person.name = params[:person][:name]
     @person.birthday_date = params[:person][:birthday_date]
     @person.city = params[:person][:city]
@@ -32,7 +33,7 @@ class RegistrationController < Devise::RegistrationsController
      @person.user = @user
       @person.id = @user.id
       @person.save
-      redirect_to people_path
+      redirect_to root_url
     else
       render :action => "new"
     end

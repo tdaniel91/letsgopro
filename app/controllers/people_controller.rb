@@ -1,12 +1,12 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
-
   before_filter :require_permission, only: :edit
+  before_action :require_signed
 
   def require_permission
-    if current_user != User.find(params[:id])
-      redirect_to root_path
-      #Or do something else here
+    if current_user != User.find(@person.user_id)
+      flash[:notice] = "Não tem autorização para editar estes dados. :)"
+      redirect_to person_path(current_user)
     end
   end
 

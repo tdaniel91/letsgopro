@@ -1,28 +1,59 @@
-<h1>Listing contacts</h1>
-
+<h1>As suas conexões</h1>
+<h2>Contactos pendentes</h2><hr>
 <table>
   <thead>
-    <tr>
-      <th>User</th>
-      <th>User2</th>
-      <th>State</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+  <tr>
+    <th>Avatar</th>
+    <th>Detalhes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @contacts.each do |contact| %>
+
+
+  <% @user_contacts_pending.each do |contact| %>
+      <% person = Person.find(contact.user_id) %>
       <tr>
-        <td><%= contact.user_id %></td>
-        <td><%= contact.user2_id %></td>
-        <td><%= contact.state %></td>
+        <td>
+          <%= link_to (image_tag person.avatar.url, :class =>"imgOtherUser", :alt => "user img"), person %>
+        </td>
+        <td>
+          <%= link_to person.name, person %><br>
+
+          <%= link_to person.name, person %><br>
+          <%= person.city %>   <br>
+          <%= person.birthday_date %>
+        <h1><%= contact.state %></h1>
+          <td><%= link_to 'Show', contact %></td>
+        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+        <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  <tr>
+    <td colspan="6"><h2>Contactos</h2><hr></td>
+  </tr>
+
+
+
+  <% @user_contacts_accepted.each do |contact| %>
+    <% person = Person.find(contact.user_id) %>
+      <tr>
+        <td>
+          <%= link_to (image_tag person.avatar.url, :class =>"imgOtherUser", :alt => "user img"), person %>
+        </td>
+        <td>
+          <%= link_to person.name, person %><br>
+          <%= person.city %>   <br>
+          <%= person.birthday_date %>
+          <h1><%= contact.state %></h1>
         <td><%= link_to 'Show', contact %></td>
         <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
         <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 

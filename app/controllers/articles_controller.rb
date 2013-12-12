@@ -1,12 +1,13 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
   before_filter :require_permission, only: :edit
+  before_action :require_signed
+
 
   def require_permission
-    if current_user != Article.find(params[:id]).user
-      redirect_to root_path
-      #Or do something else here
+    if current_user != User.find(@article.user_id)
+      flash[:notice] = "Não tem autorização para editar estes dados. :)"
+      redirect_to articles_path
     end
   end
 

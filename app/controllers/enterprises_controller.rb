@@ -1,12 +1,12 @@
 class EnterprisesController < ApplicationController
   before_action :set_enterprise, only: [:show, :edit, :update, :destroy]
-
   before_filter :require_permission, only: :edit
+  before_action :require_signed
 
   def require_permission
-    if current_user != User.find(Enterprise.find(params[:id]).admin_id)
-      redirect_to root_path
-      #Or do something else here
+    if current_user != User.find(@enterprise.admin_id)
+      flash[:notice] = "Não tem autorização para editar estes dados. :)"
+      redirect_to enterprise_path(@enterprise)
     end
   end
 

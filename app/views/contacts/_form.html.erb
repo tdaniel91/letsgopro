@@ -12,7 +12,7 @@
   <% end %>
 
 
-    <p> Deseja adicionar <b><%= Person.find(params[:user2_id]).name %></b> à sua lista de contactos?</p>
+    <%#  <p> Deseja adicionar <b><%= Person.find(params[:user2_id]).name % ></b> à sua lista de contactos?</p> %>
 
     <br/><%= link_to 'Add as Friend' , new_contact_path(:user2_id => params[:user2_id]), :method => :post %>
 

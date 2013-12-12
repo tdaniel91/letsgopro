@@ -1,11 +1,12 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
-  before_filter :require_permission, only: :edit
+  before_action :require_permission, only: :edit
+  before_action :require_signed
 
   def require_permission
-    if current_user != User.find(params[:id])
-      redirect_to root_path
-      #Or do something else here
+    if ((current_user != User.find(@contact.user_id)) && (current_user != User.find(@contact.user2_id)) )
+      flash[:notice] = "Não tem autorização para editar estes dados. :)"
+      redirect_to contacts_path
     end
   end
 
@@ -13,6 +14,26 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     @contacts = Contact.all
+
+    @user = current_user
+    @user_contacts = Array.new
+    @contacts.each do |c|
+      if c.user_id == @user.id  || c.user2_id == @user.id
+        @user_contacts.push(c)
+      end
+    end
+
+    @user_contacts_accepted = Array.new
+    @user_contacts_pending = Array.new
+    @user_contacts.each do |c|
+      if c.state == "Aceite"
+        @user_contacts_accepted.push(c)
+      end
+      if c.state == "Pendente"
+        @user_contacts_pending.push(c)
+      end
+
+    end
   end
 
   # GET /contacts/1

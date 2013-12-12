@@ -1,12 +1,12 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
-
   before_filter :require_permission, only: :edit
+  before_action :require_signed
 
   def require_permission
-    if current_user != Job.find(params[:id]).user
+    if current_user != User.find(@job.user_id)
+      flash[:notice] = "Não tem autorização para editar estes dados. :)"
       redirect_to root_path
-      #Or do something else here
     end
   end
 
