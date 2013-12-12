@@ -22,6 +22,12 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
+    @admin_pages = Array.new
+    Enterprise.all.each do |e|
+      if @user.id == e.admin_id
+        @admin_pages.push(e)
+      end
+    end
   end
 
   # GET /people/new
@@ -85,19 +91,25 @@ class PeopleController < ApplicationController
       @courses = @user.course
       @jobs = @user.job
 
-      @user_contacts = Array.new
+      @user_contacts = Array.new                                          #objecto contacto
       @contacts.each do |c|
         if c.user_id == @user.id  || c.user2_id == @user.id
           @user_contacts.push(c)
         end
       end
 
-      @user_contacts_accepted = Array.new
+      @user_contacts_accepted = Array.new                                 #objecto person
       @user_contacts.each do |c|
         if c.state == "accepted"
-          @user_contacts_accepted.push(c)
+          if @user.id == c.user_id
+            @user_contacts_accepted.push(Person.find(c.user2_id))
+          else
+            @user_contacts_accepted.push(Person.find(c.user_id))
+          end
         end
       end
+      @user_contacts_accepted.sort_by { |person| person[:name] }
+
 
       @coworkers = Array.new
       if !(@jobs.size)==0

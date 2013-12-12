@@ -84,9 +84,24 @@ class EnterprisesController < ApplicationController
     def set_enterprise
       @enterprise = Enterprise.find(params[:id])
       @workers = Array.new
-        @enterprise.job.each do |j|
-            @workers.push(j)
+      @enterprise.job.each do |j|
+          @workers.push(j)
+      end
+
+      @admin_conections = Array.new
+      Contact.all.each do |c|
+        if c.user_id == @enterprise.admin_id
+          @admin_conections.push(Person.find(c.user2_id))
+        elsif c.user2_id == @enterprise.admin_id
+          @admin_conections.push(Person.find(c.user_id))
         end
+      end
+
+      @admin_conections = Array.new
+      @enterprise.job.each do |c|
+        @admin_conections.push(Person.find(c.user_id))
+      end
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

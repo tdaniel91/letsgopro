@@ -17,7 +17,7 @@
       <tr>
         <td>
           <%#TODO AVATAR EMPRESA link_to (image_tag enterprise.avatar.url, :class =>"imgOtherUser", :alt => "user img"), enterprise %>
-          <%= image_tag enterprise.attachment.url %>
+          <%= image_tag enterprise.attachment.url,  :class =>"imgUser", :alt => "enterprise img"%>
         </td>
         <td>
           <%= link_to enterprise.name, enterprise %><br>

@@ -58,6 +58,7 @@
 	<%= f.label :attachment %>
 	<%= f.file_field :attachment %>
   </div>
+    <%= f.select :admin_id, @admin_conections.collect {|c| [c.name]}, {include_blank: 'mudar de admin'} %>
   <div class="actions">
     <%= f.submit %>
   </div>

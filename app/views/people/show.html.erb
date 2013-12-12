@@ -2,7 +2,7 @@
 
 <div id="topUser" class="articleBody" >
 
-  <%= image_tag @person.avatar.url, :class =>"imgUser", :alt => "user img"%>      <%# TODO meter uma imagem default num if %>
+  <%= image_tag @person.avatar.url, :class =>"imgUser", :alt => "user img"%>
   <% if current_user==@user %>
       <p class="vermais" align="right"><a href="EditProfile.html"> Editar</a></p>     <%# TODO linkar o form certo %> <br>
       <%= link_to "editar", edit_person_path(@person), :class=>"vermais", :align=>"right" %>
@@ -13,7 +13,7 @@
         <%= link_to "Adicionar contacto", new_contact_path( :user2_id => @user.id)%>
       <% end %>
   <% end %>
-  <h1 id="articleTitle"><%=@person.name  %></h1>                                  <%# TODO meter 1 %>
+  <h1 id="articleTitle"><%=@person.name  %></h1>                                  <%# TODO meter primeiro nome%>
   <p id="userFrase"><%=@person.quote  %> </p>
   <%if @jobs.size==0 %>
       <p></p>
@@ -81,14 +81,19 @@
               </ul>
               <% end %>
       <% end %>
-      <hr>
-    </div>
-    <div id="hobbies" class="articleBody">
-      <h3>Hobbies</h3>
+      <h3>Páginas que administro</h3>
+      <% if @admin_pages.size==0 %>
+        <p>De momento não é administrador de nenhuma página de empresa. <%= link_to "Crie", new_enterprise_path%> já a sua empresa!</p>
+      <% else %>
+        <% @admin_pages.each do |ap| %>
+          <%= link_to ap.name, ap %>
+        <% end %>
+      <% end %>
       <ul id="userHobbies">
       </ul>
       <hr>
     </div>
+
 <% end %>
 <% if @privacy!=2 and @privacy!=3%>
     <div id="contactos" class="articleBody">
@@ -98,20 +103,16 @@
         <%if @user_contacts_accepted.size==0 %>
             <p>De momento não tem nenhum contacto na sua rede! Adicione <%= link_to "contacts", people_path %>!</p>
         <% else %>
-            <% @user_contacts_accepted.each do |c| %>
+            <% @user_contacts_accepted.take(4).each do |c| %>
                 <div class="divContacto">
                   <a href="profile.html?user=">
-                    <% if @user == c.user_id %>
-                        <% u = Person.find(c.user2_id)%>
-                    <% else %>
-                        <% u = Person.find(c.user_id)%>
-                    <% end %>
-                    <%= link_to (image_tag u.avatar.url, :class =>"imgOtherUser", :alt => "user img"), u %>
-                    <p class="nameOtherUser"> <%= link_to u.name, u%></p>
+                    <%= link_to (image_tag c.avatar.url, :class =>"imgOtherUser", :alt => "user img"), c %>
+                    <p class="nameOtherUser"> <%= link_to c.name, c%></p>
                   </a>
                 </div>
             <% end %>
         <% end %>
+        <p class="vermais" ><%= link_to "Ver mais", contacts_path %> <br>
       </div>
       <hr >
       <h3>Colegas</h3>                                                                <!-- TODO nao funciona -->
