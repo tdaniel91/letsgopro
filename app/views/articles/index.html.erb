@@ -1,12 +1,4 @@
 <% if user_signed_in? %>
-
-<%=form_tag articles_path, :method => :get do %>
-<p>
-	<img src="images/lupa.png" width="18"/>
-	<%= text_field_tag :search, params[:search] %>
-	<%= submit_tag "Search", :name => nil %>
-</p>
-<% end %>
 <h1>Listing articles</h1>
 
 <table>
@@ -35,7 +27,7 @@
 
 						<div style="clear: left">
 						  <strong>Autor:</strong>
-						  <%= image_tag Person.find(article.user_id).avatar(:tiny) %>
+						  <%= image_tag Person.find(article.user_id) %>
 						  <%= link_to Person.find(article.user_id ).name, Person.find(article.user_id) %>
 						</div></td>
 						</tr>

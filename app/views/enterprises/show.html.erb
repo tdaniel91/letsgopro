@@ -2,7 +2,7 @@
 
 
 <div id="topUser" class="articleBody" >
-  <%= image_tag @enterprise.attachment.url(:profile),  :class =>"imgUser", :alt => "user img"%>
+  <%= image_tag @enterprise.attachment.url,  :class =>"imgUser", :alt => "user img"%>
   <h1 id="articleTitle"><%= @enterprise.name %></h1>
   <p><%= @enterprise.slogan %></p>
 
@@ -37,7 +37,7 @@
   <h3>Administrador da página</h3>
 
   <div class="divContacto">
-    <%= link_to (image_tag Person.find(@enterprise.admin_id).avatar.url(:smaller), :class =>"imgOtherUser", :alt => "user img"), Person.find(@enterprise.admin_id)%>
+    <%= link_to (image_tag Person.find(@enterprise.admin_id).avatar.url, :class =>"imgOtherUser", :alt => "user img"), Person.find(@enterprise.admin_id)%>
     <p class="nameOtherUser"> <%= link_to Person.find(@enterprise.admin_id).name, Person.find(@enterprise.admin_id) %></p>
   </div>
   <h3>Funcionarios</h3>

@@ -1,10 +1,3 @@
-<%=form_tag enterprises_path, :method => :get do %>
-<p>
-	<img src="images/lupa.png" width="18"/>
-	<%= text_field_tag :search, params[:search] %>
-	<%= submit_tag "Search", :name => nil %>
-</p>
-<% end %>
 <h1>Lista de empresas</h1>
 
 <p>Tem um pequeno negocio e gostava de aumentar a sua visibilidade? <%= link_to "Crie já uma página", new_enterprise_path %> personalizavel para a sua empresa!</p>
@@ -25,7 +18,7 @@
   <% @enterprises.each do |enterprise| %>
       <tr>
         <td>
-          <%= link_to (image_tag enterprise.attachment.url(:thumb),  :class =>"imgUser", :alt => "enterprise img"), enterprise%>
+          <%= link_to (image_tag enterprise.attachment.url,  :class =>"imgUser", :alt => "enterprise img"), enterprise%>
         </td>
         <td>
           <%= link_to enterprise.name, enterprise %><br>

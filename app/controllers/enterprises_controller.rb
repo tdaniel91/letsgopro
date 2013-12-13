@@ -13,10 +13,7 @@ class EnterprisesController < ApplicationController
   # GET /enterprises
   # GET /enterprises.json
   def index
-	@search = Enterprise.search do
-		fulltext params[:search]
-	end
-    @enterprises = @search.results
+    @enterprises = Enterprise.all
   end
 
   # GET /enterprises/1
