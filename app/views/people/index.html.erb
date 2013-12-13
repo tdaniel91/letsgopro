@@ -20,9 +20,7 @@
           <%= person.city %>   <br>
           <%= person.birthday_date %>
         </td>
-        <td><%= link_to 'Ver', person %></td>
         <td><%= link_to 'Editar', edit_person_path(person) %></td>
-        <td><%= link_to 'Apagar', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

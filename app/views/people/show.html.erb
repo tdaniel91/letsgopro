@@ -4,8 +4,7 @@
 
   <%= image_tag @person.avatar.url, :class =>"imgUser", :alt => "user img"%>
   <% if current_user==@user %>
-      <p class="vermais" align="right"><a href="EditProfile.html"> Editar</a></p> <%# TODO linkar o form certo %> <br>
-      <%= link_to "editar", edit_person_path(@person), :class=>"vermais", :align=>"right" %>
+      <%= link_to "Editar Perfil", edit_person_path(current_user), :class => 'vermais' %>
   <% else %>
       <% if (@user_contacts_accepted.map(&:id).include?(current_user.id)) %>
           <%= link_to "Remover contacto", contacts_path,data: { confirm: 'Are you sure?' }%> <%# TODO linkar para o delete %> <br>
@@ -112,8 +111,9 @@
                   </a>
                 </div>
             <% end %>
+            <p class="vermais" ><%= link_to "Ver mais", contacts_path %> <br>
         <% end %>
-        <p class="vermais" ><%= link_to "Ver mais", contacts_path %> <br>
+
       </div>
       <hr >
       <h3>Colegas</h3>                                                                <!-- TODO nao funciona -->

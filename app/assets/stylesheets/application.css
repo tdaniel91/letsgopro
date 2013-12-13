@@ -15,7 +15,7 @@
 
 /*=======================ESTILOS POR PADRAO===============================*/
 
-body{
+#bodyStyle{
     margin: 0px;
     background: #b8f28c url("/images/background1.png") repeat-x;
     font-family:Verdana, Geneva, sans-serif;
@@ -205,35 +205,35 @@ hr {
     margin-left: 10px;
     margin-right: 10px;
 }
-.articleBody > h1{
+h1{
     font-weight:600;
     font-size: 25px;
     color: #056507;
     padding: 0px;
     margin: 0px;
 }
-.articleBody > h2{
+ h2{
     font-weight:lighter;
     color: #056507;
     padding: 5px 0px 1px 0px;
     margin: 0 0 0 0px;
 }
-.articleBody > h3{
+ h3{
     font-weight:lighter;
     color: forestgreen;
     padding: 4px 0px 2px 5px;
     margin: 0 0 0 0px;
 }
-.articleBody > p{
+ p{
     padding: 0px 0px 2px 10px;
     margin: 0 0 0 0px;
 }
-.articleBody > ul{
+ ul{
     padding: 4px 0px 2px 25px;
     margin: 0 0 0 0px;
     list-style-type: square;
 }
-.articleBody >  li{
+  li{
     padding: 0px 0px 0px 5px;
     margin: 0 0 0 0px;
 }
@@ -293,6 +293,59 @@ a.aboutus:hover{
 -------------------------------------------*/
 
 /* -----------------------------------------
+        Artigo
+-------------------------------------------*/
+.imgListArticle{
+    float: left;
+    margin: 5px 10px 5px 10px;
+    max-width:150px;
+    max-height:150px;
+    border: 1px solid #AAAAAA;}
+.imgArticle{
+    float: left;
+    margin: 0px 10px 10px 0px;
+    max-width:250px;
+    max-height:250px;
+    border: 1px solid #AAAAAA;}
+.imgUserArticle{
+    float: left;
+    margin-right: 0px;
+    width:25px;
+    height:25px;
+    border: 1px solid #AAAAAA;
+}
+/* -----------------------------------------
+        /Artigo
+-------------------------------------------*/
+/* -----------------------------------------
+        /empresa
+-------------------------------------------*/
+.imgListEmpresa{
+    float: left;
+    margin: 5px 10px 5px 10px;
+    max-width:150px;
+    max-height:150px;
+    border: 1px solid #AAAAAA;}
+.imgEpresa{
+    float: left;
+    margin: 0px 10px 10px 0px;
+    max-width:250px;
+    max-height:250px;
+    border: 1px solid #AAAAAA;}
+.imgUserEmpresaAdmin{
+    float: left;
+    margin-right: 0px;
+    width:25px;
+    height:25px;
+    border: 1px solid #AAAAAA;
+.empresaSlogan
+    font-style: italic;
+    color: #AAAAAA;
+}
+/* -----------------------------------------
+        /Empresa
+-------------------------------------------*/
+/* -----------------------------------------
         Profile
 -------------------------------------------*/
 #topUser {
@@ -300,7 +353,7 @@ a.aboutus:hover{
 }
 .imgUser {
     float: left;
-    margin-right: 0px;
+    margin-right: 10px;
 	width:200px;
 	height:200px;
     border: 1px solid #AAAAAA;

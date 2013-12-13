@@ -13,10 +13,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-	@search = Person.search do
-		fulltext params[:search]
-	end
-    @people = @search.results
+    @people = Person.all
   end
 
   # GET /people/1

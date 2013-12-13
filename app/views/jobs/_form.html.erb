@@ -22,6 +22,7 @@
         <% e_array.push( [e.name,e.id] )%>
     <% end %>
     <%= options_for_select(e_array) %> <%= f.select :enterprise_id, options_for_select(e_array)%>
+    <p>Não encontra a sua empresa? <%= link_to 'Crie', new_enterprise_path %> já a página da sua empresa!!</p>
   </div>
   <div class="field">
     <%= f.label :role %><br>

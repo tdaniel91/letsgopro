@@ -12,7 +12,7 @@
   <%= csrf_meta_tags %>
 
 </head>
-<body >
+<body id="bodyStyle">
 <div id="secondBackground">
 
   <!-- HEADER-->
@@ -57,6 +57,7 @@
             <ul style="display: none;">
               <li><img src="/images/profile2.png" width="15"><%=link_to  "O meu perfil", person_path(current_user)%></li>
               <li><img src="/images/profile_empresa.png" width="20"><a href="/enterpriseByUser.html">A minha empresa</a></li>
+              <li><img src="/images/friends.png" width="18"><%= link_to "Os meus contactos", contacts_path %></li>
             </ul>
           </li>
           <li><img src="/images/Suitcase_icon.png" width="18"> <%= link_to "Empresas", enterprises_path%> </li>
@@ -82,20 +83,23 @@
 
 
   <div id="feed">
-    <p id="feedTitle">Feed de notícias</p><img src="/images/feed.png" width="30">
+    <p id="feedTitle">Feed</p><img src="/images/feed.png" width="30">
     <hr>
-    <p id="headerNews">O Lorem Ipsum</p>
-    <p id="newsText">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-    <hr>
-    <p id="headerNews">Rick Roll - Lyrics</p>
-    <p id="newsText">Never gonna give you up<br>
-      Never gonna let you down<br>
-      Never gonna run around and desert you<br>
-      Never gonna make you cry <br>
-      Never gonna say goodbye<br>
-      Never gonna tell a lie and hurt you
-    </p>
-    <hr>
+    <% if user_signed_in?%>
+        <%if  @art!=nil %>
+            <% @art.each.take(10) do |a| %>
+                <%= link_to (image_tag a.attachment.url(:thumb)),a %>
+                <p id="headerNews"><%= link_to a.article_title, a%></p>
+                <p id="newsText"><%= a.article_text%></p>
+                <p id="newsUser"><%= link_to Person.find(a.user_id).name, Person.find(a.user_id) %></p>
+                <hr>
+            <% end %>
+        <% else %>
+            <p id="newsText">De momento os seus contactos não têm artigos</p>
+        <% end %>
+    <% else %>
+        <p id="newsText">Faça log in para ver o feed!</p>
+    <% end %>
   </div>
   <!-- FOOTER -->
   <div id="footer" >

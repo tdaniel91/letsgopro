@@ -1,50 +1,27 @@
 <% if user_signed_in? %>
 <h1>Listing articles</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-            <% @articles.each do |article| %>
-                        <tr>
-						<td>
-						<h3>
-						  <%= article.article_title %>
-						</h3>
-
-						<div style="float:left">
-						  <%= image_tag article.attachment.url(:thumb) %>
-						</div>
-						<div>
-						  <%= article.article_text %>
-						</div>
-
-						<div style="clear: left">
-						  <strong>Autor:</strong>
-						  <%= image_tag Person.find(article.user_id) %>
-						  <%= link_to Person.find(article.user_id ).name, Person.find(article.user_id) %>
-						</div></td>
-						</tr>
-                      <tr><td>
-					  <% if (Person.find(current_user.id).id == article.user_id) %>
-					  <%= link_to 'Ver', article %>
-                      <%= link_to 'Editar', edit_article_path(article) %>
-                      <%= link_to 'Apagar', article, method: :delete, data: { confirm: 'Tem a certeza?' } %>
-					  </td>
-                      </tr>
-                       <% end %>
-					   <tr><td><hr/></td></tr>
-            <% end %>
-	  </tbody>
-</table>
+    <%= link_to 'Novo Artigo', new_article_path %>
+    <% @articles.each do |article| %>
+        <div style="clear:both">
+            <div style="float:left">
+              <%= link_to (image_tag article.attachment.url , class: "imgListArticle"), article%>
+            </div>
+            <div>
+              <h2><%=link_to article.article_title,article %></h2>
+              <%= link_to (image_tag Person.find(article.user_id).avatar.url , class: "imgUserArticle"), Person.find(article.user_id) %>
+              <%= link_to Person.find(article.user_id ).name, Person.find(article.user_id) %>
+            </div>
+            <div >
+              <% if (Person.find(current_user.id).id == article.user_id) %>
+                  <br>
+                  <%= link_to 'Editar', edit_article_path(article) %>
+                  <%= link_to 'Apagar', article, method: :delete, data: { confirm: 'Tem a certeza?' } %>
+              <% end %>
+            </div>
+      </div>
+    <% end %>
 <br>
-<%= link_to 'Novo Artigo', new_article_path %>
 <%else %>
 <p> Faça <%= link_to 'login', new_user_session_path %> ou <%= link_to 'registe-se', new_user_registration_path %> para visualizar os seus artigos </p>
 <% end %>
