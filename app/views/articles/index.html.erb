@@ -1,6 +1,8 @@
 <% if user_signed_in? %>
+
 <%=form_tag articles_path, :method => :get do %>
 <p>
+	<img src="images/lupa.png" width="18"/>
 	<%= text_field_tag :search, params[:search] %>
 	<%= submit_tag "Search", :name => nil %>
 </p>
@@ -18,7 +20,6 @@
 
   <tbody>
             <% @articles.each do |article| %>
-                      <% if (Person.find(current_user.id).id == article.user_id) %>
                         <tr>
 						<td>
 						<h3>
@@ -39,9 +40,10 @@
 						</div></td>
 						</tr>
                       <tr><td>
+					  <% if (Person.find(current_user.id).id == article.user_id) %>
 					  <%= link_to 'Ver', article %>
                       <%= link_to 'Editar', edit_article_path(article) %>
-                      <%= link_to 'Apagar', article, method: :delete, data: { confirm: 'Are you sure?' } %>
+                      <%= link_to 'Apagar', article, method: :delete, data: { confirm: 'Tem a certeza?' } %>
 					  </td>
                       </tr>
                        <% end %>

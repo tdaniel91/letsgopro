@@ -1,5 +1,6 @@
 <%=form_tag enterprises_path, :method => :get do %>
 <p>
+	<img src="images/lupa.png" width="18"/>
 	<%= text_field_tag :search, params[:search] %>
 	<%= submit_tag "Search", :name => nil %>
 </p>
@@ -30,9 +31,11 @@
           <%= link_to enterprise.name, enterprise %><br>
           <%= enterprise.slogan %>
           <%= enterprise.foundation %>  </td>
-        <td><%= link_to 'Show', enterprise %></td>
-        <td><%= link_to 'Edit', edit_enterprise_path(enterprise) %></td>
-        <td><%= link_to 'Destroy', enterprise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		 <% if (Person.find(current_user.id).id == enterprise.admin_id) %>
+        <td><%= link_to 'Ver', enterprise %></td>
+        <td><%= link_to 'Editar', edit_enterprise_path(enterprise) %></td>
+        <td><%= link_to 'Apagar', enterprise, method: :delete, data: { confirm: 'Tem a certeza?' } %></td>
+		<% end %>
       </tr>
   <% end %>
   </tbody>

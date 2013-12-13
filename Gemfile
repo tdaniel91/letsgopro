@@ -56,3 +56,6 @@ gem 'sunspot_solr'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+#rmagick
+gem 'rmagick'

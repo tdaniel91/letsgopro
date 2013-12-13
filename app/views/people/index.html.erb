@@ -1,5 +1,6 @@
 <%=form_tag people_path, :method => :get do %>
 <p>
+	<img src="images/lupa.png" width="18"/>
 	<%= text_field_tag :search, params[:search] %>
 	<%= submit_tag "Search", :name => nil %>
 </p>
@@ -26,9 +27,9 @@
           <%= person.city %>   <br>
           <%= person.birthday_date %>
         </td>
-        <td><%= link_to 'Show', person %></td>
-        <td><%= link_to 'Edit', edit_person_path(person) %></td>
-        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', person %></td>
+        <td><%= link_to 'Editar', edit_person_path(person) %></td>
+        <td><%= link_to 'Apagar', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

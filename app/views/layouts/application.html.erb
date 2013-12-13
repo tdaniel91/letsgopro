@@ -61,7 +61,8 @@
           <li><img src="/images/Suitcase_icon.png" width="18"> <%= link_to "Empresas", enterprises_path%> </li>
           <li><img src="/images/friends.png" width="18"> <%= link_to "Contactos", people_path%> </li>
           <!-- <%= link_to '<li><img src="/images/friends.png" width="18"> Contactos </li>'.html_safe, people_path%> -->
-          <li><img src="/images/lupa.png" width="18"><a href="Pesquisa.html"> Pesquisa</a> </li>
+          <li><img src="/images/article.png" width="18"> <%=link_to "Artigos", articles_path %></li>
+		  <li><img src="/images/lupa.png" width="18"><a href="Pesquisa.html"> Pesquisa</a> </li>
           <li></li>
       <%else #TODO Que menu se mete aqui? %>
 	  <li><img src="/images/home.png" width="20"><%= link_to "Página inicial", root_url %></li>
