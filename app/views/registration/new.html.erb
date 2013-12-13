@@ -19,7 +19,7 @@
   </div>
   <div class="field">
     <%= p.label :birthday_date %><br>
-    <%= p.datetime_select :birthday_date %>
+    <%= p.datetime_select :birthday_date, :discard_hour => true, :discard_minute => true, :start_year => Time.now.year-100, :end_year => Time.now.year-16%>
   </div>
   <div class="field">
     <%= p.label :city %><br>

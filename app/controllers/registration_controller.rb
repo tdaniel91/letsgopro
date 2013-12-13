@@ -20,7 +20,7 @@ class RegistrationController < Devise::RegistrationsController
     @person = Person.new
 
     @person.name = params[:person][:name]
-    @person.birthday_date = params[:person][:birthday_date]
+    @person.birthday_date = params[:birthday_date]
     @person.city = params[:person][:city]
     @person.phone = params[:person][:phone]
     @person.quote = params[:person][:quote]
