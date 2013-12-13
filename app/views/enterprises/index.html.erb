@@ -30,7 +30,7 @@
         <td>
           <%= link_to enterprise.name, enterprise %><br>
           <%= enterprise.slogan %>
-          <%= enterprise.foundation %>  </td>
+          <%= enterprise.foundation.strftime("%d/%m/%Y") %>  </td>
 		 <% if (Person.find(current_user.id).id == enterprise.admin_id) %>
         <td><%= link_to 'Ver', enterprise %></td>
         <td><%= link_to 'Editar', edit_enterprise_path(enterprise) %></td>

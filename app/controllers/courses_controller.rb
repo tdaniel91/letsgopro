@@ -23,7 +23,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/new
   def new
-    @course = Course.new
+    @course = Course.new(:user_id => current_user.id)
   end
 
   # GET /courses/1/edit

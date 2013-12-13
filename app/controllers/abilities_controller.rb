@@ -22,7 +22,7 @@ class AbilitiesController < ApplicationController
 
   # GET /abilities/new
   def new
-    @ability = Ability.new
+    @ability = Ability.new(:user_id => current_user.id)
   end
 
   # GET /abilities/1/edit

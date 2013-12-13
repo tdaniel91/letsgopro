@@ -12,7 +12,7 @@
   <h2>História</h2>
   <p><%= @enterprise.history %></p>
   <h3>Data da fundação</h3>
-  <p><%= @enterprise.foundation %></p>
+  <p><%= @enterprise.foundation.strftime("%d/%m/%Y") %></p>
   <h2>Contactos</h2>
   <h3>Endereço na Web</h3>
   <a href="http://<%= @enterprise.website %>"> <%= @enterprise.website %></a> <!-- #TODO Isto não pode ficar assim, senão se houver um link ja com o protocolo, ou com outro diferente isto dá barraca! -->

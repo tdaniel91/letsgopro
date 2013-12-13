@@ -12,8 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.hidden_field :user_id %>
   </div>
   <div class="field">
     <%= f.label :name %><br>
@@ -25,7 +24,7 @@
   </div>
   <div class="field">
     <%= f.label :year %><br>
-    <%= f.datetime_select :year %>
+    <%= f.datetime_select( :year , :discard_month => true, :discard_day => true,:discard_hour => true, :discard_minute => true, :start_year => Time.now.year-100, :end_year => Time.now.year)%>
   </div>
   <div class="actions">
     <%= f.submit %>

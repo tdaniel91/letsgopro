@@ -17,12 +17,12 @@
 
 <p>
   <strong>Begin:</strong>
-  <%= @job.begin %>
+  <%= @job.begin.strftime("%m/%Y") %>
 </p>
 
 <p>
   <strong>End:</strong>
-  <%= @job.end %>
+  <%= @job.end.strftime("%m/%Y") %>
 </p>
 
 <%= link_to 'Edit', edit_job_path(@job) %> |

@@ -25,7 +25,7 @@ s    <div id="error_explanation">
   </div>
   <div class="field">
     <%= f.label :foundation %><br>
-    <%= f.datetime_select :foundation %>
+    <%= f.datetime_select( :foundation , :discard_hour => true, :discard_minute => true, :start_year => Time.now.year-200, :end_year => Time.now.year)%>
   </div>
   <div class="field">
   <%= f.label :website %>
@@ -37,7 +37,7 @@ s    <div id="error_explanation">
   </div>
   <div class="field">
     <%= f.label :phone %><br>
-    <%= f.number_field :phone %>
+    <%= f.text_field :phone %>
   </div>
   <div class="field">
     <%= f.label :address %><br>

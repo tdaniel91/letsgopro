@@ -24,7 +24,8 @@ class RegistrationController < Devise::RegistrationsController
     @person.city = params[:person][:city]
     @person.phone = params[:person][:phone]
     @person.quote = params[:person][:quote]
-    @person.privacy = params[:person][:privacy]
+    #@person.privacy = params[:person][:privacy]
+    @person.privacy = 1
 	@person.avatar = params[:person][:avatar]
     @user.valid?
     if @user.errors.blank?

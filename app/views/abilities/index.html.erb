@@ -1,29 +1,32 @@
-<h1>Listing abilities</h1>
+<h1>Lista de capacidades</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<% if (@abilities.map(&:user_id).include?(current_user.id)) %>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @abilities.each do |ability| %>
-      <tr>
-        <td><%= ability.user_id %></td>
-        <td><%= ability.name %></td>
-        <td><%= link_to 'Show', ability %></td>
-        <td><%= link_to 'Edit', edit_ability_path(ability) %></td>
-        <td><%= link_to 'Destroy', ability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <tbody>
+        <% @abilities.each do |ability| %>
+          <% if(ability.user_id == current_user.id) %>
+              <tr>
+                <td><%= ability.name %></td>
+                <td><%= link_to 'Edit', edit_ability_path(ability) %></td>
+                <td><%= link_to 'Destroy', ability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <%else%>
+    De momento ainda nao tem competencias...
     <% end %>
-  </tbody>
-</table>
 
 <br>
 
-<%= link_to 'New Ability', new_ability_path %>
+<%= link_to 'Nova capacidade', new_ability_path%>

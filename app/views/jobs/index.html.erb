@@ -1,35 +1,37 @@
-<h1>Listing jobs</h1>
+<h1>Lista de empregos</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Enterprise</th>
-      <th>Role</th>
-      <th>Begin</th>
-      <th>End</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<% if (@jobs.map(&:user_id).include?(current_user.id)) %>
+    <table>
+      <thead>
+        <tr>
+          <th>Enterprise</th>
+          <th>Role</th>
+          <th>Begin</th>
+          <th>End</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @jobs.each do |job| %>
-      <tr>
-        <td><%= job.user_id %></td>
-        <td><%= job.enterprise_id %></td>
-        <td><%= job.role %></td>
-        <td><%= job.begin %></td>
-        <td><%= job.end %></td>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+      <tbody>
+        <% @jobs.each do |job| %>
+          <% if(job.user_id == current_user.id) %>
+              <tr>
+                <td><%= Enterprise.find(job.enterprise_id).name %></td>
+                <td><%= job.role %></td>
+                <td><%= job.begin.strftime("%m/%Y")%></td>
+                <td><%= job.end.strftime("%m/%Y") %></td>
+                <td><%= link_to 'Edit', edit_job_path(job) %></td>
+                <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+<%else%>
+    De momento ainda nao tem empregos...
+<% end %>
 <br>
 
 <%= link_to 'New Job', new_job_path %>

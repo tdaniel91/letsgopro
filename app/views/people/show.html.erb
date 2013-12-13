@@ -2,31 +2,32 @@
 
 <div id="topUser" class="articleBody" >
 
-  <%= image_tag @person.avatar.url(:profile), :class =>"imgUser", :alt => "user img"%>
+  <%= image_tag @person.avatar.url, :class =>"imgUser", :alt => "user img"%>
   <% if current_user==@user %>
-      <p class="vermais" align="right"><a href="EditProfile.html"> Editar</a></p>     <%# TODO linkar o form certo %> <br>
+      <p class="vermais" align="right"><a href="EditProfile.html"> Editar</a></p> <%# TODO linkar o form certo %> <br>
       <%= link_to "editar", edit_person_path(@person), :class=>"vermais", :align=>"right" %>
   <% else %>
-      <% if (@user_contacts_accepted.map(&:user_id).include?(current_user.id) || @user_contacts_accepted.map(&:user2_id).include?(current_user.id)) %>
-        <%= link_to "Remover contacto", contacts_path,data: { confirm: 'Are you sure?' }%>         <%# TODO linkar para o delete %> <br>
+      <% if (@user_contacts_accepted.map(&:id).include?(current_user.id)) %>
+          <%= link_to "Remover contacto", contacts_path,data: { confirm: 'Are you sure?' }%> <%# TODO linkar para o delete %> <br>
       <% else %>
-        <%= link_to "Adicionar contacto", new_contact_path( :user2_id => @user.id)%>
+          <%= link_to "Adicionar contacto", new_contact_path( :user2_id => @user.id)%>
       <% end %>
   <% end %>
-  <h1 id="articleTitle"><%=@person.name  %></h1>                                  <%# TODO meter primeiro nome%>
-  <p id="userFrase"><%=@person.quote  %> </p>
+  <h1 id="articleTitle"><%=@person.name %></h1> <%# TODO meter primeiro nome%>
+  <p id="userFrase"><%=@person.quote %> </p>
   <%if @jobs.size==0 %>
       <p></p>
   <% else %>
-    <p class="userCargo"><b><%= @jobs.last.role %></b></p>
+      <p class="userCargo"><b><%= @jobs.last.role %></b></p>
   <% end %>
 </div>
+
 <div id="pessoal" class="articleBody" >
   <h2>Pessoal</h2>
   <h3>Nome completo</h3>
   <p id="userNomeCompleto"><%=@person.name  %></p>
   <h3>Data de Nascimento</h3>
-  <p id="userDataNascimento"><%=@person.birthday_date %></p>
+  <p id="userDataNascimento"><%=@person.birthday_date.strftime("%d/%m/%Y") %></p>
   <h3>Cidade</h3>
   <p id="userLocalidade"><%=@person.city  %></p>
   <h3>Email</h3>
@@ -45,7 +46,7 @@
       <% else %>
           <ul>
             <% @courses.each do |c| %>
-                <li><b> <%= c.name %> </b> - <%= c.univ %> - <%= c.year %> </li>
+                <li><b> <%= c.name %> </b> - <%= c.univ %> - <%= c.year.strftime("%Y") %> </li>
             <% end %>
           </ul>
       <% end %>
@@ -76,7 +77,7 @@
               <ul id="userEmpresas">
                 <% @jobs.each do |j| %>
                     <li><b> <%= link_to Enterprise.find(j.enterprise_id).name, Enterprise.find(j.enterprise_id) %> </b>
-                      - <%= j.role %> - <%= j.begin %> // <%= j.end %> </li>
+                      - <%= j.role %> - <%= j.begin.strftime("%d/%m/%Y") %> <--> <%= j.end..strftime("%d/%m/%Y") %> </li>
                 <% end %>
               </ul>
               <% end %>

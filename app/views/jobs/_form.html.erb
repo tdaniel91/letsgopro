@@ -12,12 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
+    <%= f.hidden_field :user_id %>
   </div>
   <div class="field">
     <%= f.label :enterprise_id %><br>
-    <%= f.number_field :enterprise_id %>
+
+    <% e_array = Array.new %>
+    <% Enterprise.all.each do |e| %>
+        <% e_array.push( [e.name,e.id] )%>
+    <% end %>
+    <%= options_for_select(e_array) %> <%= f.select :enterprise_id, options_for_select(e_array)%>
   </div>
   <div class="field">
     <%= f.label :role %><br>
@@ -25,11 +29,11 @@
   </div>
   <div class="field">
     <%= f.label :begin %><br>
-    <%= f.datetime_select :begin %>
+    <%= f.datetime_select( :begin , :discard_hour => true, :discard_minute => true, :start_year => Time.now.year-100, :end_year => Time.now.year)%>
   </div>
   <div class="field">
     <%= f.label :end %><br>
-    <%= f.datetime_select :end %>
+    <%= f.datetime_select( :end , :discard_hour => true, :discard_minute => true, :start_year => Time.now.year-100, :end_year => Time.now.year)%>
   </div>
   <div class="actions">
     <%= f.submit %>
