@@ -65,3 +65,6 @@ gem 'sunspot_solr'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+#rails_12factor
+gem 'rails_12factor'
